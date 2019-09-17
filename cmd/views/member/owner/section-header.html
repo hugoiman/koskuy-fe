@@ -1,0 +1,100 @@
+{{define "_section-header"}}
+
+  <div class="section-header">
+    <h1 id="page_name">Page Name</h1>
+    <div class="section-header-button">
+      <!-- getSectionHeader -->
+    </div>
+    <div class="section-header-breadcrumb">
+      <h6 class="nama_kos"></h6>
+    </div>
+  </div>
+
+{{end}}
+
+{{define "_section-header-mykoslist"}}
+
+  <div class="section-header">
+    <h1 id="page_name">Page Name</h1>
+    {{template "_btn-add_mykos"}}
+    <!-- <div class="section-header-breadcrumb">
+      <div class="breadcrumb-item active"><a href="#">Home</a></div>
+      <div class="breadcrumb-item">Daftar My Kos</div>
+    </div> -->
+  </div>
+
+{{end}}
+
+{{define "_btn-add_mykos"}}
+  <div class="section-header-button">
+    <a href="/form-iklan-kos" class="btn btn-primary"><i class="fa fa-plus-circle fa-lg"></i> Tambah Kos</a>
+  </div>
+{{end}}
+{{define "_btn-pengaturan"}}
+  <div class="section-header-button" id="pengaturanx">
+    <a href="/mykos/pengaturan/1" class="btn btn-warning"><i class="fa fa-cog fa-lg"></i> Pengaturan</a>
+  </div>
+{{end}}
+
+{{define "_count-status-member"}}
+  <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="card card-statistic-1">
+      <div class="card-icon bg-primary">
+        <i class="fas fa-users"></i>
+      </div>
+      <div class="card-wrap">
+        <div class="card-header">
+          <h4>Total Anak Kos</h4>
+        </div>
+        <div class="card-body">
+          <span id="total-renter"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="card card-statistic-1">
+      <div class="card-icon bg-success">
+        <i class="fas fa-user-check"></i>
+      </div>
+      <div class="card-wrap">
+        <div class="card-header">
+          <h4>Lunas</h4>
+        </div>
+        <div class="card-body">
+          <span id="total-lunas"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="card card-statistic-1">
+      <div class="card-icon bg-warning">
+        <i class="fas fa-user-minus"></i>
+      </div>
+      <div class="card-wrap">
+        <div class="card-header">
+          <h4>Angsur</h4>
+        </div>
+        <div class="card-body">
+          <span id="total-angsur"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="card card-statistic-1">
+      <div class="card-icon bg-danger">
+        <i class="fas fa-user-times"></i>
+      </div>
+      <div class="card-wrap">
+        <div class="card-header">
+          <h4>Belum Bayar</h4>
+        </div>
+        <div class="card-body">
+          <span id="total-belum_bayar"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+{{end}}

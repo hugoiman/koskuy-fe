@@ -1,0 +1,190 @@
+{{define "_nav-link-member"}}
+
+<li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+  <img alt="image" src="/static/img/members/member.png" class="rounded-circle mr-1 avatar">
+  <div class="d-sm-none d-lg-inline-block">Hi, <span id="nav_nama"></span></div></a>
+  <div class="dropdown-menu dropdown-menu-right">
+    <!-- <div class="dropdown-title">Logged in 5 min ago</div> -->
+    <a href="/mykos" class="dropdown-item has-icon">
+      <i class="fas fa-home"></i> My Kos
+    </a>
+    <a href="/myhistory" class="dropdown-item has-icon">
+      <i class="fas fa-history"></i> My History Kos
+    </a>
+    <a class="dropdown-item has-icon" id="profil">
+      <i class="fas fa-user"></i> Profil
+    </a>
+    <div class="dropdown-divider"></div>
+    <a href="http://localhost:8000/logout" class="dropdown-item has-icon text-danger">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+  </div>
+</li>
+
+{{end}}
+
+{{define "_notification-bell"}}
+
+<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+  <div class="dropdown-menu dropdown-list dropdown-menu-right">
+    <div class="dropdown-header">Notifications
+      <div class="float-right">
+        <a href="#">Mark All As Read</a>
+      </div>
+    </div>
+    <div class="dropdown-list-content dropdown-list-icons">
+      <a href="#" class="dropdown-item">
+        <div class="dropdown-item-icon bg-info text-white">
+          <i class="far fa-user"></i>
+        </div>
+        <div class="dropdown-item-desc">
+          Permintaan booking Anda telah di setujui oleh pengelola <b> Array Kos, Jakarta </b>
+          <div class="time">10 Hours Ago</div>
+        </div>
+      </a>
+      <a href="#" class="dropdown-item">
+        <div class="dropdown-item-icon bg-success text-white">
+          <i class="fas fa-check"></i>
+        </div>
+        <div class="dropdown-item-desc">
+          <b>[Array Kos, Jakarta] - </b> Pembayaran Anda bulan April telah sukses!
+          <div class="time">12 Hours Ago</div>
+        </div>
+      </a>
+      <a href="#" class="dropdown-item">
+        <div class="dropdown-item-icon bg-danger text-white">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="dropdown-item-desc">
+          <b>[Array Kos, Jakarta] - </b> Silahkan melakukan pembayaran Anda sebelum tanggal 25 April 2019
+          <div class="time">17 Hours Ago</div>
+        </div>
+      </a>
+    </div>
+    <div class="dropdown-footer text-center">
+      <a href="#">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+    </div>
+  </div>
+</li>
+
+{{end}}
+
+{{define "_notification-message"}}
+
+<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
+  <div class="dropdown-menu dropdown-list dropdown-menu-right">
+    <div class="dropdown-header">Messages
+      <div class="float-right">
+        <a href="#">Mark All As Read</a>
+      </div>
+    </div>
+    <div class="dropdown-list-content dropdown-list-message">
+      <a href="#" class="dropdown-item dropdown-item-unread">
+        <div class="dropdown-item-avatar">
+          <img alt="image" src="/static/img/avatar/avatar-1.png" class="rounded-circle">
+          <div class="is-online"></div>
+        </div>
+        <div class="dropdown-item-desc">
+          <b>Kusnaedi</b>
+          <p>Hello, Bro!</p>
+          <div class="time">10 Hours Ago</div>
+        </div>
+      </a>
+      <a href="#" class="dropdown-item dropdown-item-unread">
+        <div class="dropdown-item-avatar">
+          <img alt="image" src="/static/img/avatar/avatar-2.png" class="rounded-circle">
+        </div>
+        <div class="dropdown-item-desc">
+          <b>Dedik Sugiharto</b>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+          <div class="time">12 Hours Ago</div>
+        </div>
+      </a>
+      <a href="#" class="dropdown-item dropdown-item-unread">
+        <div class="dropdown-item-avatar">
+          <img alt="image" src="/static/img/avatar/avatar-3.png" class="rounded-circle">
+          <div class="is-online"></div>
+        </div>
+        <div class="dropdown-item-desc">
+          <b>Agung Ardiansyah</b>
+          <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <div class="time">12 Hours Ago</div>
+        </div>
+      </a>
+      <a href="#" class="dropdown-item">
+        <div class="dropdown-item-avatar">
+          <img alt="image" src="/static/img/avatar/avatar-4.png" class="rounded-circle">
+        </div>
+        <div class="dropdown-item-desc">
+          <b>Ardian Rahardiansyah</b>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit ess</p>
+          <div class="time">16 Hours Ago</div>
+        </div>
+      </a>
+      <a href="#" class="dropdown-item">
+        <div class="dropdown-item-avatar">
+          <img alt="image" src="/static/img/avatar/avatar-5.png" class="rounded-circle">
+        </div>
+        <div class="dropdown-item-desc">
+          <b>Alfa Zulkarnain</b>
+          <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+          <div class="time">Yesterday</div>
+        </div>
+      </a>
+    </div>
+    <div class="dropdown-footer text-center">
+      <a href="#">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+    </div>
+  </div>
+</li>
+
+{{end}}
+
+{{define "_notification-req-booking"}}
+
+<li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-user"></i></i></a>
+  <div class="dropdown-menu dropdown-list dropdown-menu-right">
+    <div class="dropdown-header">Permintaan Booking Kamar</div>
+    <div class="dropdown-list-content dropdown-list-icons">
+      <a href="#" class="dropdown-item dropdown-item-unread">
+        <div class="dropdown-item-avatar">
+          <img alt="image" src="/static/img/avatar/avatar-2.png" class="rounded-circle">
+        </div>
+        <div class="dropdown-item-desc">
+          Gerry A. untuk <b>Go Kos, Suhat, Malang</b>
+          <div class="time text-primary">2 Min Ago</div>
+        </div>
+      </a>
+      <a href="#" class="dropdown-item dropdown-item-unread">
+        <div class="dropdown-item-avatar">
+          <img alt="image" src="/static/img/avatar/avatar-4.png" class="rounded-circle">
+        </div>
+        <div class="dropdown-item-desc">
+          Melly R. untuk <b>Republik Kos, Sawojajar, Malang</b>
+          <div class="time text-primary">2 Min Ago</div>
+        </div>
+      </a>
+      <a href="#" class="dropdown-item dropdown-item-unread">
+        <div class="dropdown-item-avatar">
+          <img alt="image" src="/static/img/avatar/avatar-5.png" class="rounded-circle">
+        </div>
+        <div class="dropdown-item-desc">
+          Neymar Jr untuk <b>UB Kos, Veteran, Malang</b>
+          <div class="time text-primary">2 Min Ago</div>
+        </div>
+      </a>
+    </div>
+    <div class="dropdown-footer text-center">
+      <a href="/mykos/permintaan-booking">Lihat Semua <i class="fas fa-chevron-right"></i></a>
+    </div>
+  </div>
+</li>
+
+{{end}}
+
+{{define "_nav-filter"}}
+<nav class="navbar navbar-secondary navbar-expand-lg">
+  <div class="container">
+  </div>
+</nav>
+{{end}}

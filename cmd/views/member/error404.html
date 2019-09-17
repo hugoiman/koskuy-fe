@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{template "_head" .}}
+
+  <!-- External -->
+</head>
+<body class="layout-3">
+  <div id="app">
+    <div class="main-wrapper container">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+
+            <div class="card">
+              <div class="card-header">
+                <h4>Halaman Tidak ditemukan</h4>
+              </div>
+              <div class="card-body">
+                <div class="empty-state" data-height="600">
+                  <img class="img-fluid" src="/static/img/drawkit/drawkit-nature-man-colour.svg" alt="image">
+                  <h2 class="mt-0">Sepertinya kamu tersesat</h2>
+                  <p class="lead">
+                    Kami tidak dapat menemukan sesuatu yang kamu cari, periksa url dan coba lagi.
+                  </p>
+                  <a href="javascript:history.back()" class="btn btn-warning mt-4">Kembali</a>
+                  <!-- <a href="#" class="mt-4 bb">Need Help?</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <script src="/static/ex/js/views/error404.js"></script>
+
+    </div>
+  </div>
+</body>
+</html>

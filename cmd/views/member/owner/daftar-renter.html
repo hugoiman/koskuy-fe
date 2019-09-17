@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{template "_head" .}}
+
+  <!-- External -->
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+
+</head>
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+      {{template "_side-bar" .}}
+
+      <div class="main-content">
+        <section class="section">
+
+          {{template "_section-header" .}}
+
+          <div class="section-body">
+            <div class="row">
+              {{template "_count-status-member"}}
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                          <tr>
+                            <th class="text-center">#</th>
+                            <th>Nama</th>
+                            <th>No Telp</th>
+                            <th>J. Kelamin</th>
+                            <th>Kamar</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>
+                              <img alt="image" src="/static/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Member 1">
+                              Member 1
+                            </td>
+                            <td>0123456789</td>
+                            <td>Pria</td>
+                            <td>17c</td>
+                            <td><center><div class="badge badge-success">Lunas</div></center></td>
+                            <td><a href="/mykos/member/1?member=hugo" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="view"><i class="far fa-eye"></i></a></td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>
+                              <img alt="image" src="/static/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Member 1">
+                              Member 2
+                            </td>
+                            <td>0123456789</td>
+                            <td>Wanita</td>
+                            <td>11c</td>
+                            <td><center><div class="badge badge-warning">Angsur</div></center></td>
+                            <td><a href="/mykos/member/1?member=hugo" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="view"><i class="far fa-eye"></i></a></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>
+                              <img alt="image" src="/static/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Member 1">
+                              Member 3
+                            </td>
+                            <td>0123456789</td>
+                            <td>Pria</td>
+                            <td>18c</td>
+                            <td><center><div class="badge badge-danger">Belum Bayar</div></center></td>
+                            <td><a href="/mykos/member/1?member=hugo" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="view"><i class="far fa-eye"></i></a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <!-- JS Libraies -->
+      <script src="/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
+      <script src="/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+      <script src="/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
+
+      <!-- Page Specific JS File -->
+      <script src="/static/js/page/modules-datatables.js"></script>
+      <script src="/static/ex/js/views/member/owner/daftar-renter.js"></script>
+      <script>
+        $(document).ready(function(){
+          $("#add_member").click(async function(){
+            const {value: text} = await Swal.fire({
+              title: 'Masukan nomer hp',
+              input: 'text',
+              inputPlaceholder: 'Masukan nomer hp member baru',
+              inputValidator: (value) => {
+                if (!value) {
+                  return 'Nomer hp diperlukan!'
+                }
+              }
+            })
+
+            if (text) {
+              Swal.fire('Nomer hp: ' + text)
+            }
+          });
+        });
+      </script>
+    </div>
+  </div>
+</body>
+</html>

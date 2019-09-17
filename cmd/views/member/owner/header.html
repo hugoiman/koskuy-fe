@@ -1,0 +1,41 @@
+{{define "_header"}}
+
+<nav class="navbar navbar-expand-lg main-navbar" style="position:fixed; background:#7B68EE">
+  <form class="form-inline mr-auto">
+    <ul class="navbar-nav mr-3">
+      <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+      <a href="/" class="navbar-brand sidebar-gone-hide">Koskuy</a>
+    </ul>
+  </form>
+  <ul class="navbar-nav navbar-right">
+    {{template "_nav-link-member" .}}
+  </ul>
+</nav>
+{{end}}
+
+{{define "_side-bar"}}
+  <div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a href="/">Koskuy</a>
+      </div>
+      <div class="sidebar-brand sidebar-brand-sm">
+        <a href="/">Kk</a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="menu-header">Navigasi</li>
+        <li class="dashboard"><a class="nav-link link_dashboard"><i class="fa fa-fire fa-lg"></i> <span>Dashboard</span></a></li>
+        <li class="nav-item dropdown laporan">
+          <a href="#" class="nav-link has-dropdown"><i class="fa fa-file-invoice fa-lg"></i> <span>Laporan</span></a>
+          <ul class="dropdown-menu">
+            <li class="laporan-pembayaran"><a class="nav-link link_laporan-pembayaran">Laporan Pembayaran</a></li>
+            <li class="laporan-bulanan"><a class="nav-link link_laporan-bulanan">Laporan Bulanan</a></li>
+          </ul>
+        </li>
+        <li class="daftar-renter"><a class="nav-link link_daftar-renter"><i class="fa fa-users fa-lg"></i> <span>Daftar Anak Kos</span></a></li>
+        <li class="pengaturan"><a class="nav-link link_pengaturan"><i class="fa fa-cog fa-lg"></i> <span>Pengaturan</span></a></li>
+      </ul>
+    </aside>
+  </div>
+
+{{end}}

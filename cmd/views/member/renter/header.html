@@ -1,0 +1,35 @@
+{{define "_header"}}
+
+  <nav class="navbar navbar-expand-lg main-navbar">
+    <form class="form-inline mr-auto">
+      <ul class="navbar-nav mr-3">
+        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+        <a class="navbar-brand" href="#"></a>
+      </ul>
+    </form>
+
+    <ul class="navbar-nav navbar-right">
+      {{template "_notification-req-booking" .}}
+      {{template "_notification-message" .}}
+      {{template "_notification-bell" .}}
+      {{template "_nav-link-user" .}}
+    </ul>
+  </nav>
+
+  <div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a href="/">Koskuy</a>
+      </div>
+      <div class="sidebar-brand sidebar-brand-sm">
+        <a href="/">Kk</a>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="menu-header">Navigasi</li>
+        <li class="active"><a class="nav-link" href="/informasi/1"><i class="fa fa-info fa-lg"></i> <span>Informasi</span></a></li>
+        <li><a class="nav-link" href="/pembayaran/1"><i class="fa fa-file-invoice-dollar fa-lg"></i> <span>Pembayaran</span></a></li>
+      </ul>
+    </aside>
+  </div>
+
+{{end}}

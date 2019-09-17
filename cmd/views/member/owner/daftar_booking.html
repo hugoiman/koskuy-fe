@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{template "_head" .}}
+
+  <!-- External -->
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+
+</head>
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+
+      <div class="main-content">
+        <section class="section">
+
+          {{template "_section-header" .}}
+
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                          <tr>
+                            <th class="text-center">#</th>
+                            <th>Nama</th>
+                            <th>Durasi</th>
+                            <th>Masuk</th>
+                            <th>Selesai</th>
+                            <th>Kos</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>
+                              <img alt="image" src="/static/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Member 1">
+                              Member 1</td>
+                            <td>1 Bulan</td>
+                            <td>11 January 2019</td>
+                            <td>10 February 2019</td>
+                            <td>Kos Griyaiya, Suhat</td>
+                            <td><center><div class="badge badge-danger">Ditolak</div></center></td></td>
+                            <td>
+                              <button type="submit" class="btn btn-success setuju" data-toggle="tooltip" title="Setujui Permintaan" disabled><i class="fas fa-check"></i></button>
+                              <button type="submit" class="btn btn-danger tolak" data-toggle="tooltip" title="Tolak Permintaan" disabled><i class="fas fa-times"></i></button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>
+                              <img alt="image" src="/static/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Member 1">
+                              Member 2</td>
+                            <td>2 Bulan</td>
+                            <td>13 January 2019</td>
+                            <td>12 Maret 2019</td>
+                            <td>Kos Griyaiya, Suhat</td>
+                            <td><center><div class="badge badge-warning">Menunggu</div></center></td></td>
+                            <td>
+                              <button type="submit" class="btn btn-success setuju" data-toggle="tooltip" title="Setujui Permintaan"><i class="fas fa-check"></i></button>
+                              <button type="submit" class="btn btn-danger tolak" data-toggle="tooltip" title="Tolak Permintaan"><i class="fas fa-times"></i></button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>
+                              <img alt="image" src="/static/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="tooltip" title="Member 1">
+                              Member 3</td>
+                            <td>2 Bulan</td>
+                            <td>11 January 2019</td>
+                            <td>10 Maret 2019</td>
+                            <td>Kos Griyaiya, Suhat</td>
+                            <td><center><div class="badge badge-success">Disetujui</div></center></td></td>
+                            <td>
+                              <button type="submit" class="btn btn-success setuju" data-toggle="tooltip" title="Setujui Permintaan" disabled><i class="fas fa-check"></i></button>
+                              <button type="submit" class="btn btn-danger tolak" data-toggle="tooltip" title="Tolak Permintaan" disabled><i class="fas fa-times"></i></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <!-- JS Libraies -->
+      <script src="/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
+      <script src="/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+      <script src="/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
+
+      <!-- Page Specific JS File -->
+      <script src="/static/js/page/modules-datatables.js"></script>
+
+      <script>
+        $(document).ready(function(){
+          $(".setuju").click(function(){
+            swalertConfirm('question','ingin menerima permintaan booking ini?','#', 'data', 'Disetujui!', 'Permintaan boking telah disetujui.');
+          });
+          $(".tolak").click(function(){
+            swalertConfirm('warning','ingin menolak permintaan booking ini?','#', 'data',  'Ditolak!', 'Permintaan boking telah ditolak.');
+          });
+        });
+      </script>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{template "_head" .}}
+
+</head>
+<body class="layout-3">
+  <div id="app">
+    <div class="main-wrapper container">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+
+      <div class="main-content">
+        <section class="section">
+          {{template "_section-header" .}}
+          <div class="section-body">
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <script src="/static/ex/js/views/member/home.js"></script>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{{define "_header"}}
+
+  <nav class="navbar navbar-expand-lg main-navbar" style="position:fixed; background:#7B68EE">
+    <a href="/" class="navbar-brand sidebar-gone-hide">Koskuy</a>
+    <form class="form-inline mr-auto">
+      <ul class="navbar-nav">
+        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+      </ul>
+      <div class="search-element">
+        <input class="form-control" type="search" placeholder="Cari lokasi atau alamat..." aria-label="Search" data-width="250">
+        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+        <div class="search-backdrop"></div>
+          <div class="search-result">
+            <div class="search-item">
+              <a href="#">
+                <i class="fas fa-search-location"> </i> Lokasi sekitar saya
+              </a>
+            </div>
+            <div class="search-header">
+              Pencarian Populer
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="badges">
+                  <a href="/cari/UB" class="badge badge-light">UB</a>
+                  <a href="/cari/UMM" class="badge badge-light">UMM</a>
+                  <a href="/cari/UIN" class="badge badge-light">UIN</a>
+                  <a href="/cari/UNMER" class="badge badge-light">UNMER</a>
+                  <a href="/cari/Suhat" class="badge badge-light">Suhat</a>
+                  <a href="/cari/Dinoyo" class="badge badge-light">Dinoyo</a>
+                  <a href="/cari/Sumbersari" class="badge badge-light">Sumbersari</a>
+                  <a href="/cari/Batu" class="badge badge-light">Batu</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </form>
+    <ul class="navbar-nav navbar-right">
+      <!-- {{template "_notification-req-booking" .}}
+      {{template "_notification-message" .}}
+      {{template "_notification-bell" .}} -->
+      {{template "_nav-link-member" .}}
+      {{template "_nav-filter" .}}
+    </ul>
+  </nav>
+
+{{end}}

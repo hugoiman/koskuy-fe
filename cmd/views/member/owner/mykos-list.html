@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {{template "_head" .}}
+
+</head>
+
+<body class="layout-3">
+  <div id="app">
+    <div class="main-wrapper container">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+
+      <div class="main-content">
+        <section class="section">
+          {{template "_section-header-mykoslist" .}}
+          <div class="section-body">
+
+            <div class="card" id="empty" hidden>
+              <div class="card-body">
+                <div class="empty-state" data-height="400">
+                  <div class="empty-state-icon">
+                    <i class="fas fa-question"></i>
+                  </div>
+                  <h2>Kamu belum memiliki kos yang ingin dikelola</h2>
+                  <p class="lead">
+                    Segera daftarkan kos yang ingin kamu kelola dengan klik tombol dibawah ini.
+                  </p>
+                  <a href="#" class="btn btn-primary mt-4">Create new One</a>
+                  <!-- <a href="#" class="mt-4 bb">Need Help?</a> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="row" id="mykoslist" hidden>
+              <!-- display daftar kos owner -->
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <script src="/static/ex/js/views/member/owner/mykos-list.js"></script>
+      <script src="/static/ex/js/igorescobar-jQuery-Mask-Plugin-535b4e4/jquery.mask.js"></script>
+
+    </div>
+  </div>
+</body>
+
+</html>

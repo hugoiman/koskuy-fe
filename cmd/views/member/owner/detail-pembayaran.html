@@ -11,6 +11,7 @@
       <div class="navbar-bg"></div>
 
       {{template "_header" .}}
+      {{template "_side-bar" .}}
 
       <div class="main-content">
         <section class="section">
@@ -27,16 +28,16 @@
                         <div class="ticket-content">
                           <div class="ticket-header">
                             <div class="ticket-sender-picture rounded-circle img-shadow">
-                              <img src="/static/img/avatar/avatar-5.png" alt="image">
+                              <img id="avatar_pembayaran">
                             </div>
                             <div class="ticket-detail">
                               <div class="ticket-title">
-                                <a href="/mykos/member/1?member=hugo">
-                                  <h4>Hugo Iman</h4>
+                                <a href="anak-kos/1">
+                                  <h4 id="nama"></h4>
                               </a>
                               </div>
                               <div class="ticket-info">
-                                <div class="badge badge-success">Lunas</div>
+
                               </div>
                             </div>
                           </div>
@@ -46,18 +47,17 @@
                     <div class="row">
                       <div class="col-md-6">
                         <address>
-                          Kamar: <strong>17</strong><br>
-                          Durasi: <strong>12 Bulan</strong><br>
-                          Masuk: <strong>17 January 2019</strong><br>
-                          Selesai: <strong>16 February 2019</strong><br>
+                          Kamar: <strong id="kamar"></strong><br>
+                          Durasi: <strong id="durasi"></strong><br>
+                          Masuk: <strong id="tgl_masuk"></strong><br>
+                          Selesai: <strong id="tgl_selesai"></strong><br>
                         </address>
                       </div>
                       <div class="col-md-6 text-md-right">
                         <address>
-                          Tanggal Pembayaran : <strong>2 January 2019</strong><br>
-                          Total: <strong>Rp. 1.000.000</strong><br>
-                          Pembayaran yang diterima: <strong>Rp. 1.000.000</strong><br>
-                          <div class="badge badge-danger"><b>Tagihan: Rp 0</b></div>
+                          Tanggal Pembayaran : <strong id="tgl_dibayar"></strong><br>
+                          Telah Dibayar: Rp. <strong id="dibayar" class="rupiah"> </strong><br>
+                          <div class="badge badge-danger">Tagihan: Rp. <b id="tagihan" class="rupiah"> </b></div>
                         </address>
                       </div>
                     </div>
@@ -76,17 +76,7 @@
                         <tr>
                           <td>1</td>
                           <td>Harga Sewa Kos</td>
-                          <td class="text-right">Rp. 100.000</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>Listrik</td>
-                          <td class="text-right">Rp. 600.000</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Wifi</td>
-                          <td class="text-right">Rp. 300.000</td>
+                          <td class="text-right">Rp. <b class="rupiah" id="harga_sewa"></b></td>
                         </tr>
                       </table>
                     </div>
@@ -97,7 +87,7 @@
                       <div class="col-lg-4 text-right">
                         <div class="invoice-detail-item">
                           <div class="invoice-detail-name">Total</div>
-                          <div class="invoice-detail-value invoice-detail-value-lg">Rp. 1.000.000</div>
+                          <div class="invoice-detail-value invoice-detail-value-lg">Rp. <b class="rupiah" id="total"><b/></div>
                         </div>
                       </div>
                     </div>
@@ -119,6 +109,9 @@
       {{template "_footer" .}}
 
       <!-- External -->
+      <script src="/static/ex/js/views/member/owner/getMyKos.js"></script>
+      <script src="/static/ex/js/views/member/owner/detail-pembayaran.js"></script>
+      <script src="/static/ex/js/igorescobar-jQuery-Mask-Plugin-535b4e4/jquery.mask.js"></script>
     </div>
   </div>
 </body>

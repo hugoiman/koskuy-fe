@@ -18,7 +18,7 @@ const getData = async (token, id_kos, bulan, tahun) => {
   const getCUI        = await getComponentUI();
   const jsonToken     = await authToken(token);
   const getDataMember = await getMember(jsonToken.Id_user, token);
-  const getDataMyKos  = await getMyKos(id_kos, jsonToken.Id_user, token);
+  const getDataMyKos  = await getMyKos(id_kos, jsonToken.Id_user, token); // wajib
   const getLaporan    = await getLaporanPembayaran(token, id_kos, bulan, tahun);
   // const x = await getCount();
 }
@@ -32,14 +32,9 @@ function getComponentUI(){
   $(".section-header-button").append(button);
 }
 
-function countx(){
-  var table = $('#table-1').DataTable();
-  console.log(table.data().length);
-}
-
 function getLaporanPembayaran(token, id_kos, bulan, tahun){
   $.ajax({
-    url   : "http://localhost:8000/laporan-pembayaran?kos="+id_kos+"&bulan="+bulan+"&tahun="+tahun,
+    url   : domain+"/laporan-pembayaran/"+id_kos+"?bulan="+bulan+"&tahun="+tahun,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
@@ -125,7 +120,7 @@ function displayDataTable(dataJson){
         }
       },
       { data: function (data, type, dataToSet) {
-          return '<img alt="image" src="https://res.cloudinary.com/dbddhr9rz/image/upload/v1568697721/koskuy-img/renter/'+data.foto+'" class="rounded-circle" width="35" data-toggle="tooltip" title="' +data.nama+ '"> '+data.nama
+          return '<img alt="image" src="'+data.foto+'" class="rounded-circle" width="35" data-toggle="tooltip" title="' +data.nama+ '"> '+data.nama
         }
       },
       { data: function (data, type, dataToSet) {
@@ -144,9 +139,8 @@ function displayDataTable(dataJson){
           : '<center><div class="badge badge-danger">Belum Bayar</div></center>');
         }
       },
-      { data: "id_pembayaran",
-        render: function (dataField) {
-          return '<a href="pembayaran?id=' +dataField+ '" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="lihat"><i class="far fa-eye"></i></a>'+
+      { data: function (data, type, dataToSet) {
+          return '<a href="pembayaran?kos='+data.id_kos+'&id=' +data.id_pembayaran+ '" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="lihat"><i class="far fa-eye"></i></a>'+
           ' <button type="submit" class="btn btn-sm btn-danger btn-hapus_pembayaran" data-toggle="tooltip" data-placement="top" title="hapus"><i class="far fa-trash-alt"></i></button>';
         }
       }

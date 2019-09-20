@@ -1,6 +1,6 @@
 function getMyKos(id_kos, id_member, token){
   $.ajax({
-    url   : "http://localhost:8000/mykos?kos="+id_kos+"&member="+id_member,
+    url   : domain+"/mykos/"+id_kos+"/"+id_member,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
@@ -10,9 +10,9 @@ function getMyKos(id_kos, id_member, token){
         $("#title").text(response.nama_kos);
         $(".nama_kos").text(response.nama_kos);
         $(".link_dashboard").attr("href", "/dashboard?kos="+response.id_kos);
-        $(".link_laporan-pembayaran").attr("href", "/laporan-pembayaran?kos="+response.id_kos+"&bulan=May&tahun=2019");
-        $(".link_laporan-bulanan").attr("href", "/laporan-bulanan?kos="+response.id_kos+"&bulan=May&tahun=2019");
-        $(".link_daftar-renter").attr("href", "/daftar-renter?kos="+response.id_kos);
+        $(".link_laporan-pembayaran").attr("href", "/laporan-pembayaran?kos="+response.id_kos+"&bulan=September&tahun=2019");
+        $(".link_laporan-bulanan").attr("href", "/laporan-bulanan?kos="+response.id_kos+"&bulan=September&tahun=2019");
+        $(".link_daftar-renter").attr("href", "/daftar-anak-kos?kos="+response.id_kos);
         $(".link_pengaturan").attr("href", "/pengaturan?kos="+response.id_kos);
       } else {
         $(".section").hide();

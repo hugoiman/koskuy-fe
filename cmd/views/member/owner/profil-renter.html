@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {{template "_head" .}}
+
+  <!-- External -->
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+      {{template "_side-bar" .}}
+
+      <div class="main-content">
+        <section class="section">
+
+          {{template "_section-header" .}}
+
+          <div class="section-body">
+            <div class="card">
+              <div class="card-body" id="main">
+                <div class="row">
+                  <div class="col-12 col-sm-4 col-lg-3">
+                    <div class="author-box-left">
+                      <img alt="image" class="rounded-circle author-box-picture avatar_profil" style="margin-top:55px;">
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-8 col-lg-9">
+                    <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="home-tab2" data-toggle="tab" href="#home2" role="tab" aria-controls="home" aria-selected="true">Biodata</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="contact-tab2" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact" aria-selected="false">Foto</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="password-tab2" data-toggle="tab" href="#password2" role="tab" aria-controls="password" aria-selected="false">Password</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content tab-bordered" id="myTab3Content">
+                      <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home-tab2">
+                        <form class="needs-validation" novalidate="">
+                          <div class="card-body">
+                            <h6>Data Diri</h6>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>Nama*</label>
+                              </div>
+                              <div class="form-group mx-sm-4 mb-2">
+                                <input type="text" class="form-control form-control-sm nama biodata" id="input_nama" readonly="">
+                                <div class="invalid-feedback" id="invalid_nama"></div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>No HP*</label>
+                              </div>
+                              <div class="form-group mx-sm-4 mb-2">
+                                <input type="text" class="form-control form-control-sm no_hp biodata" id="input_no_hp" readonly="">
+                                <div class="invalid-feedback" id="invalid_no_hp"></div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>Email</label>
+                              </div>
+                              <div class="form-group mx-sm-4 mb-2">
+                                <input type="text" class="form-control form-control-sm email biodata" id="input_email" readonly="">
+                                <div class="invalid-feedback" id="invalid_email"></div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>Tanggal Lahir</label>
+                              </div>
+                              <div class="form-group mx-sm-4 mb-2">
+                                <input type="text" class="form-control form-control-sm tanggal_lahir biodata" id="input_tanggal_lahir" readonly="">
+                                <div class="invalid-feedback" id="invalid_tanggal_lahir"></div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>Jenis Kelamin</label>
+                              </div>
+                              <div class="form-group mx-sm-4 mb-2">
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input pria gender" type="radio" name="gender" id="inlineradio1" value="pria" disabled>
+                                  <label class="form-check-label" for="inlineradio1">Pria</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input wanita gender" type="radio" name="gender" id="inlineradio2" value="wanita" disabled>
+                                  <label class="form-check-label" for="inlineradio2">Wanita</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>Alamat</label>
+                              </div>
+                              <div class="form-group mx-sm-4 mb-2">
+                                <input type="text" class="form-control form-control-sm alamat biodata" id="input_alamat" readonly="">
+                              </div>
+                            </div>
+                            <div class="card-footer text-right">
+                              <input type="button" value="Edit" class="btn btn-warning mr-1" id="btnUbahBiodata">
+                              <input type="button" value="Batal" class="btn btn-secondary mr-1" id="btnBatalBiodata">
+                              <input type="button" value="Simpan" class="btn btn-primary mr-1" id="btnSimpanBiodata">
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact-tab2">
+                        <form class="needs-validation" id="changefoto" novalidate="" action="" method="POST" enctype="multipart/form-data">
+                          <div class="card-body">
+                            <div class="form-row">
+                              <div class="custom-file col-md-5">
+                                <input type="file" class="custom-file-input" name="file" id="input_foto" accept="image/*" required>
+                                <input type="text" class="id_renter" name="id_renter" hidden>
+                                <input type="text" class="username" name="username" hidden>
+                                <input type="text" class="foto" name="old_foto" id="old_foto" hidden>
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <small class="form-text text-muted">*Maks. 2 MB</small>
+                              </div>
+                              <!-- <div class="col-md-7"> -->
+                              <button type="submit" class="btn btn-primary mx-sm-3" id="btnSimpanFoto">Simpan</button>
+                              <!-- </div> -->
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="tab-pane fade" id="password2" role="tabpanel" aria-labelledby="password-tab2">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card-body" id="error404" hidden>
+                <div class="empty-state" data-height="600">
+                  <img class="img-fluid" src="/static/img/drawkit/drawkit-nature-man-colour.svg" alt="image">
+                  <h2 class="mt-0">Sepertinya kamu tersesat</h2>
+                  <p class="lead">
+                    Kami tidak dapat menemukan halaman yang kamu cari, periksa url dan coba lagi.
+                  </p>
+                  <a href="javascript:history.back()" class="btn btn-warning mt-4">Kembali</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- JS Libraries -->
+      <script src="/static/ex/js/views/member/owner/profil-renter.js"></script>
+      <script src="/static/ex/js/views/member/owner/getMyKos.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $("#btnSimpanBiodata").hide();
+          $("#btnBatalBiodata").hide();
+
+          //  Ubah Biodata
+          $("#btnUbahBiodata").click(function(){
+            btnUbahBiodata();
+          });
+          $("#btnBatalBiodata").click(function(){
+            btnBatalBiodata();
+          });
+          $("#btnSimpanBiodata").click(function(){
+            if ($(".is-invalid").is(":visible")) {
+              swalert('warning','Terjadi Kesalahan', 'Silahkan periksa kembali data diri anda.');
+            } else {
+              btnSimpanBiodata();
+            }
+          });
+
+          $("#input_nama").keyup(function(){
+            checkNama();
+          });
+
+          // Ubah email
+          $("#btnSimpanEmail").click(function(){
+            btnSimpanEmail();
+          });
+
+          $("#input_foto").bind('change', function() {
+            var namaFile = $('#input_foto')[0].files[0].name;
+            $('.custom-file-label').text(namaFile)
+          });
+
+          $("form#changefoto").submit(function(e) {
+            e.preventDefault();
+            var token    = Cookies.get("cookie_token");
+            var formData = new FormData(this);
+            var length = $('#input_foto')[0].files.length;
+
+            if (length == 0) {
+              swalert('warning','Terjadi Kesalahan', 'Silahkan pilih foto anda.');
+            }
+            else if (length != 0) {
+              var size = $('#input_foto')[0].files[0].size/1024;
+              if (size > 2048) {
+                swalert('warning','Terjadi Kesalahan', 'Ukuran file harus kurang dari 2 MB.');
+              } else {
+                $.ajax({
+                  url   : "http://localhost:8000/changeFoto",
+                  type  : "POST",
+                  data  : formData,
+                  headers: {"Authorization": "Bearer "+token},
+                  contentType: false,
+                  processData: false,
+                  success: function(response){
+                    if (response == "true") {
+                      swalert('success','Sukses', 'Berhasil ganti foto.');
+                      setTimeout(function () {
+                				location.reload();
+                			}, 2500);
+                    }
+                  },
+                  error:function(error){
+                    console.log("error");
+                  }
+                })
+              }
+            }
+          });
+        })
+      </script>
+    </div>
+  </div>
+</body>
+
+</html>

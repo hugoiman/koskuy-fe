@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {{template "_head" .}}
+
+</head>
+
+<body class="layout-3">
+  <div id="app">
+    <div class="main-wrapper container">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+      {{template "_nav-filter" .}}
+
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                  <div class="row mt-4">
+                    <div class="col-12 col-lg-8 offset-lg-2">
+                      <div class="wizard-steps">
+                        <div class="wizard-step wizard-step-active" id="lokasi">
+                          <div class="wizard-step-icon">
+                            <i class="fas fa-home"></i>
+                          </div>
+                          <div class="wizard-step-label">
+                            Lokasi
+                          </div>
+                        </div>
+                        <div class="wizard-step" id="data_kos">
+                          <div class="wizard-step-icon">
+                            <i class="fas fa-home"></i>
+                          </div>
+                          <div class="wizard-step-label">
+                            Data Kos
+                          </div>
+                        </div>
+                        <div class="wizard-step" id="fasilitas">
+                          <div class="wizard-step-icon">
+                            <i class="fas fa-box-open"></i>
+                          </div>
+                          <div class="wizard-step-label">
+                            Fasilitas Kos
+                          </div>
+                        </div>
+                        <div class="wizard-step" id="foto">
+                          <div class="wizard-step-icon">
+                            <i class="fas fa-images"></i>
+                          </div>
+                          <div class="wizard-step-label">
+                            Foto Kos
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <form id="form0">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <div class="row mb-4">
+                          <div class="col-4 col-12 col-md-6 col-lg-4">
+                            <div class="input-group">
+                              <input type="text" class="form-control" id="map-search" placeholder="Lokasi kos"><br>
+                              <div class="invalid-feedback" id="invalid_peta_lokasi"></div>
+                              <div class="input-group-append">
+                                <button class="btn btn-primary">Search</button>
+                              </div>
+                            </div>
+                            <input type="text" class="form-control latitude" id="latitude"><br>
+                            <input type="text" class="form-control longitude" id="longitude"><br>
+                            <input type="text" class="form-control reg-input-city" id="reg-input-city"><br>
+                          </div>
+                        </div>
+                        <div class="alert alert-info">
+                          You can type the destination address in the form above then the marker will appear on the map according to your address.
+                        </div>
+                        <div id="map-canvas" data-height="400"></div>
+                      </div>
+                      <div class="form-group">
+                        <label>Alamat lengkap*</label>
+                        <input type="text" class="form-control form-control-sm" id="alamat" placeholder="Alamat lengkap">
+                        <div class="invalid-feedback" id="invalid_alamat"></div>
+                      </div>
+                    </div>
+                    <div class="card-footer text-right">
+                      <input type="button" class="btn btn-primary" id="validasi_form0" value="Berikutnya">
+                    </div>
+                  </form>
+
+                  {{template "_form1"}}
+                  {{template "_form2"}}
+                  {{template "_form3"}}
+
+                  <!-- External -->
+                  <!-- JS Libraies -->
+                  <script src="/static/ex/js/views/member/owner/gmaps.js"></script>
+                  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXMIuR0fe2Itloc5KOgqacx5LJiqybe8A&libraries=places&callback=initialize"></script>
+                  <!-- <script src="/node_modules/gmaps/gmaps.min.js"></script> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <script src="/static/js/scripts.js"></script>
+      <script src="/static/js/custom.js"></script>
+      <script src="/static/ex/js/views/member/owner/form-new-kos.js"></script>
+
+      <script type="text/javascript">
+      $(document).ready(function(){
+        $("#form1").hide();
+        $("#form2").hide();
+        $("#form3").hide();
+        $("#form_harga_harian").hide();
+        $("#form_harga_mingguan").hide();
+        $("#form_harga_tahunan").hide();
+
+        // Tombol next n back
+        $("#validasi_form0").click(function(){
+          validasi_form0();
+        });
+
+        $("#validasi_form1").click(function(){
+          validasi_form1();
+        });
+
+        $("#validasi_form2").click(function(){
+          validasi_form2();
+        });
+
+        $("#btnToForm0").click(function(){
+          $("#lokasi").addClass("wizard-step-active");
+          $("#data_kos").removeClass("wizard-step-active");
+          $("#form0").show();
+          $("#form1").hide();
+          $('html,body').animate({scrollTop:$('.main-content').offset().top}, 600);
+        });
+
+        $("#btnToForm1").click(function(){
+          $("#data_kos").addClass("wizard-step-active");
+          $("#fasilitas").removeClass("wizard-step-active");
+          $("#form1").show();
+          $("#form2").hide();
+          $('html,body').animate({scrollTop:$('.main-content').offset().top}, 600);
+        });
+
+        $("#btnToForm2").click(function(){
+          $("#fasilitas").addClass("wizard-step-active");
+          $("#foto").removeClass("wizard-step-active");
+          $("#form2").show();
+          $("#form3").hide();
+          $('html,body').animate({scrollTop:$('.main-content').offset().top}, 600);
+        });
+
+        $("#customCheck2").click(function(){
+          if( $(this).prop('checked')) {
+            $("#form_harga_harian").show();
+          } else {
+            $("#form_harga_harian").hide();
+          }
+        });
+
+        $("#customCheck3").click(function(){
+          if( $(this).prop('checked')) {
+            $("#form_harga_mingguan").show();
+          } else {
+            $("#form_harga_mingguan").hide();
+          }
+        });
+
+        $("#customCheck4").click(function(){
+          if( $(this).prop('checked')) {
+            $("#form_harga_tahunan").show();
+          } else {
+            $("#form_harga_tahunan").hide();
+          }
+        });
+
+
+      });
+      </script>
+
+    </div>
+  </div>
+</body>
+
+</html>

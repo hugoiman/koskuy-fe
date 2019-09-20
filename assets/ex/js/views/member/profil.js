@@ -21,7 +21,7 @@ const getData = async (token) => {
 
 function getProfilMember(id_member, token){
   $.ajax({
-    url   : "http://localhost:8000/member/"+id_member,
+    url   : domain+"/member/"+id_member,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
@@ -38,7 +38,15 @@ function getProfilMember(id_member, token){
       $('.jenis_kelamin').val(response.jenis_kelamin);
       $('.alamat').val(response.alamat);
       $('.foto').val(response.foto);
-      $(".avatar_profil").attr("src", "https://res.cloudinary.com/dbddhr9rz/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/v1568697619/koskuy-img/members/"+response.foto);
+      console.log(response.foto);
+      var strfoto = response.foto.split("/");
+      str4 = strfoto[strfoto.length-1];
+      str3 = strfoto[strfoto.length-2];
+      str2 = strfoto[strfoto.length-3];
+      str1 = strfoto[strfoto.length-4];
+      var foto = str1+"/"+str2+"/"+str3+"/"+str4;
+
+      $(".avatar_profil").attr("src", "https://res.cloudinary.com/dbddhr9rz/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/"+foto);
       if (response.jenis_kelamin == "pria") {
         $('.pria').prop("checked", true);
       } else if (response.jenis_kelamin == "wanita") {
@@ -124,11 +132,11 @@ function changePassword(){
   var konfirmasi_password = $("#konfirmasi_password").val();
 
   var jsonData  =  JSON.stringify({
-    id_member, password_lama, password_baru
+    password_lama, password_baru
   });
 
   $.ajax({
-    url   : "http://localhost:8000/password",
+    url   : domain+"/password/"+id_member,
     type  : 'PUT',
     headers: {"Authorization": "Bearer "+token},
     data : jsonData,
@@ -165,19 +173,24 @@ function checkNama(){
 }
 
 function checkUsername(){
-  var email = $('#email').val();
+  var id_member = parseInt($("#id_member").val());
   var username = $('#input_username').val();
   var token = Cookies.get("cookie_token");
   var regex = /^[a-z0-9_.]{4,18}$/i;
 
+  var jsonData  =  JSON.stringify({
+    id_member, username
+  });
+
   if (regex.test(username)) {
     $.ajax({
-      url   : "http://localhost:8000/checkUsername",
+      url   : domain+"/checkUsername",
       type  : 'POST',
-      data  : {"email": email, "username": username},
+      data : jsonData,
+      contentType: 'application/json',
 
       success: function(response){
-        if (response =="true") {
+        if (response.status == true) {
           $(".username").addClass("is-valid");
           $(".username").removeClass("is-invalid");
           $("#invalid_username").hide();
@@ -247,20 +260,24 @@ function btnSimpanBiodata(){
   var alamat = $("#input_alamat").val();
 
   var data  =  JSON.stringify({
-    id_member, nama, username, tanggal_lahir, jenis_kelamin, alamat
+    nama, username, tanggal_lahir, jenis_kelamin, alamat
   });
 
   $.ajax({
-    url   : "http://localhost:8000/editBiodataMember",
+    url   : domain+"/member/"+id_member,
     type  : 'PUT',
     data  : data,
     contentType: 'application/json',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
-      swalert('success','Sukses!', 'Berhasil edit biodata.');
-      setTimeout(function () {
-				location.reload();
-			}, 2500);
+      if (response.status == true) {
+        swalert('success','Sukses!', 'Berhasil edit biodata.');
+        setTimeout(function () {
+  				location.reload();
+  			}, 2500);
+      } else {
+        swalert('warning','Terjadi Kesalahan!', 'Gagal edit biodata.');
+      }
     },
     error:function(error){
       console.log("error");
@@ -279,7 +296,7 @@ function btnSimpanEmail(){
 
   if (regex.test(email)) {
     $.ajax({
-      url   : "http://localhost:8000/editEmail",
+      url   : domain+"/editEmail",
       type  : 'POST',
       data  : {"email": email, "id_member": id_member, "nama": nama, "username": username},
       headers: {"Authorization": "Bearer "+token},

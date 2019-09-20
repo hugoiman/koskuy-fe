@@ -1,6 +1,8 @@
+var domain = "http://localhost:8000";
+
 function authToken(token){
   var x = $.ajax({
-    url   : "http://localhost:8000/authToken",
+    url   : domain+"/authToken",
     type  : 'POST',
     headers: {"Authorization": "Bearer "+token},
 
@@ -21,7 +23,7 @@ function authToken(token){
 
 function getMember(id_member, token) {
   var data = $.ajax({
-    url   : "http://localhost:8000/member/"+id_member,
+    url   : domain+"/member/"+id_member,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
@@ -29,7 +31,7 @@ function getMember(id_member, token) {
       $("#username").val(response.username);
       $('#nav_nama').text(response.nama);
       $("#profil").attr("href", "/profil/"+response.username);
-      $(".avatar").attr("src", "https://res.cloudinary.com/dbddhr9rz/image/upload/v1568697619/koskuy-img/members/"+response.foto);
+      $(".avatar").attr("src", response.foto);
     },
     error:function(error){
       console.log("error");

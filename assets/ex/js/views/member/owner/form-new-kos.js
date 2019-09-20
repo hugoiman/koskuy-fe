@@ -10,12 +10,20 @@ const getData = async (token) => {
 }
 
 function getComponentUI(){
-$("#title").text("Form Data Iklan Kos");
+  $("#title").text("Form Data Iklan Kos");
+}
+
+function validasi_form0() {
+  $("#data_kos").addClass("wizard-step-active");
+  $("#lokasi").removeClass("wizard-step-active");
+  $("#form0").hide();
+  $("#form1").show();
+  $('html,body').animate({scrollTop:$('.main-content').offset().top}, 600);
 }
 
 function validasi_form1() {
   var nama_kos       = $("#nama_kos").val();
-  var alamat         = $("#alamat").val();
+  // var alamat         = $("#alamat").val();
   var tipe_kos       = $('input[name="tipe_kos"]:checked').val();
   var luas_kamar     = $("#luas_kamar").val();
   var total_kamar    = $("#total_kamar").val();

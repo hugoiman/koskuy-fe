@@ -4,12 +4,22 @@ function registrasi(){
   var email     = $("#email").val();
   var password  = $("#password").val();
 
+  var jsonData  =  JSON.stringify({
+    nama, username, email, password
+  });
+
   $.ajax({
-    url  : "http://localhost:9000/registrasiMember",
+    url  : "http://localhost:8000/member",
     type : 'POST',
-    data : {'nama':nama, 'username':username, 'email':email, 'password':password},
+    data : jsonData,
+    contentType: 'application/json',
     success:function(response) {
-      login();
+      if (response.status == true) {
+        // login();
+        swalert('success','Sukses!', 'Anda telah terdaftar.');
+      } else {
+        swalert('warning','Terjadi Kesalahan!', 'Harap periksa inputan form.');
+      }
     },
     error:function(error){
       swalert('error','Oops!', 'Terjadi error');
@@ -53,16 +63,22 @@ function authToken(token){
 
 function checkUsername(){
   var username = $('#username').val();
+  var id_member = 0;
   var regex = /^[a-z0-9_.]{4,18}$/i;
+
+  var jsonData  =  JSON.stringify({
+    id_member, username
+  });
 
   if (regex.test(username)) {
     $.ajax({
-      url   : "http://localhost:9000/checkUsername",
+      url   : "http://localhost:8000/checkUsername",
       type  : 'POST',
-      data  : {"username": username},
+      data : jsonData,
+      contentType: 'application/json',
 
       success: function(response){
-        if (response =="true") {
+        if (response.status == true) {
           $(".username").addClass("is-valid");
           $(".username").removeClass("is-invalid");
           $("#invalid_username").hide();
@@ -85,15 +101,22 @@ function checkUsername(){
 
 function checkEmail() {
   var email = $('#email').val();
+  var id_member = 0;
   var regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+  var jsonData  =  JSON.stringify({
+    id_member, email
+  });
 
   if (regex.test(email)) {
     $.ajax({
-      url   : "http://localhost:9000/checkEmail",
+      url   : "http://localhost:8000/checkEmail",
       type  : 'POST',
-      data  : {"email": email},
+      data  : jsonData,
+      contentType: 'application/json',
+
       success: function(response){
-        if (response == "true") {
+        if (response.status == true) {
           $(".email").addClass("is-valid");
           $(".email").removeClass("is-invalid");
           $("#invalid_email").hide();

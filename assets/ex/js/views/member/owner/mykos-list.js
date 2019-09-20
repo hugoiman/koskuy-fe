@@ -12,7 +12,7 @@ const getData = async (token) => {
 
 function getMyKosList(id_member,token) {
   $.ajax({
-    url   : "http://localhost:8000/mykoslist/"+id_member,
+    url   : domain+"/mykos/"+id_member,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(data){

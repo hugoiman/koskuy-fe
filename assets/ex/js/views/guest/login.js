@@ -1,3 +1,5 @@
+var domain = "http://localhost:8000";
+
 function login(e){
   e.preventDefault();
   var id = $("#id").val();
@@ -9,20 +11,18 @@ function login(e){
 
   if (id != "" && password != "") {
     $.ajax({
-      url  : "http://localhost:8000/login",
+      url  : domain+"/login",
       type : 'POST',
       data : jsonData,
       contentType: 'application/json',
       success:function(response) {
-        if (response.status == "Unauthorized") {
+        if (response.status == false) {
           $("#password").val("");
           swalert('warning','Wrong!', 'Maaf username/password salah! Silahkan coba lagi.');
         } else {
-          console.log(response);
-          swalert('success','Success!', 'Anda telah login.');
           //set cookie
           Cookies.set('cookie_token', response.token, { expires: 7, path: '/' });
-          window.location.href = "http://localhost:9000/home";
+          window.location.href = "/home";
         }
       },
       error:function(error){
@@ -39,7 +39,7 @@ function login(e){
 }
 function authToken(token){
   $.ajax({
-    url   : "http://localhost:8000/authToken",
+    url   : domain+"/authToken",
     type  : 'POST',
     headers: {"Authorization": "Bearer "+token},
 

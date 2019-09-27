@@ -1,20 +1,27 @@
+var domain = "http://localhost:8000";
+
 function reset_password(){
   var token = getUrlParameter('token');
   var password  = $("#password").val();
 
+  var jsonData  =  JSON.stringify({
+    token, password
+  });
+
   $.ajax({
-    url  : "http://localhost:9000/reset-password",
+    url  : domain+"/reset-password",
     type : 'POST',
-    data : {'password':password},
+    data : jsonData,
+    contentType: 'application/json',
     headers: {"Authorization": "Bearer "+token},
     success:function(response) {
-      if (response == "true") {
+      if (response.status == true) {
         $(".email").removeClass("is-valid");
         $("#email").val("");
         swalert('success','Sukses!', 'Berhasil reset password!');
 
         setTimeout(function () {
-  				window.location.href = "http://localhost:9000/";
+  				window.location.href = "http://localhost:9000/auth";
   			}, 2500);
       }
     },

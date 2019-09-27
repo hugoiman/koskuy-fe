@@ -38,7 +38,6 @@ function getProfilMember(id_member, token){
       $('.jenis_kelamin').val(response.jenis_kelamin);
       $('.alamat').val(response.alamat);
       $('.foto').val(response.foto);
-      console.log(response.foto);
       var strfoto = response.foto.split("/");
       str4 = strfoto[strfoto.length-1];
       str3 = strfoto[strfoto.length-2];

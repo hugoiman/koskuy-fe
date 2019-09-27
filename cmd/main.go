@@ -77,6 +77,23 @@ func main() {
     return c.Render(http.StatusOK, "registrasi.html", nil)
   })
 
+  //  Reset Password
+  e.GET("/forgot-password", func(c echo.Context) error {
+    e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
+      "views/guest/forgot-password.html", "views/guest/head.html", "views/guest/footer.html",
+      )),
+    }
+    return c.Render(http.StatusOK, "forgot-password.html", nil)
+  })
+
+  e.GET("/reset-password", func(c echo.Context) error {
+    e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
+      "views/guest/reset-password.html", "views/guest/head.html", "views/guest/footer.html",
+      )),
+    }
+    return c.Render(http.StatusOK, "reset-password.html", nil)
+  })
+
   // MEMBER
   e.GET("/home", func(c echo.Context) error {
     e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
@@ -170,6 +187,15 @@ func main() {
       )),
     }
     return c.Render(http.StatusOK, "profil-renter.html", nil)
+  })
+
+  e.GET("/maps", func(c echo.Context) error {
+    e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
+      "views/member/head.html", "views/member/owner/header.html", "views/member/footer.html",
+      "views/member/owner/example-maps.html",
+      )),
+    }
+    return c.Render(http.StatusOK, "example-maps.html", nil)
   })
 
   fmt.Println("service main started at :9000")

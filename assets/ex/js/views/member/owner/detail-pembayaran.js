@@ -49,11 +49,11 @@ function getDetailPembayaran(token, id_pembayaran) {
       }
       $(".ticket-info").append(status_pembayaran);
 
-      $.each(response.pembayaran_lain, function(idx, value) {
+      $.each(response.biaya_tambahan, function(idx, value) {
         var data = '<tr>'+
           '<td>'+(idx+2)+'</td>'+
           '<td>'+value.deskripsi+'</td>'+
-          '<td class="text-right">Rp. <b class="rupiah">'+value.jumlah+'</b></td>'+
+          '<td class="text-right">Rp. <b class="rupiah">'+value.biaya+'</b></td>'+
         '</tr>';
         $(".table-md").append(data);
       });

@@ -64,12 +64,6 @@ function getProfilMember(id_member, token){
         $('#verified_no_hp').hide();
       }
 
-      if (response.verifikasi_password == true) {
-        $('#form_password_lama').show();
-      } else if (response.verifikasi_password == false) {
-        $('#form_password_lama').hide();
-      }
-
       $("#title").text(response.nama);
     },
     error:function(error){

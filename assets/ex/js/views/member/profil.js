@@ -253,7 +253,7 @@ function btnSimpanBiodata(){
   var alamat = $("#input_alamat").val();
 
   var data  =  JSON.stringify({
-    nama, username, tanggal_lahir, jenis_kelamin, alamat
+    id_member, nama, username, tanggal_lahir, jenis_kelamin, alamat
   });
 
   $.ajax({
@@ -266,7 +266,8 @@ function btnSimpanBiodata(){
       if (response.status == true) {
         swalert('success','Sukses!', 'Berhasil edit biodata.');
         setTimeout(function () {
-  				location.reload();
+  				// location.reload();
+          window.location.href = "/profil/"+username;
   			}, 2500);
       } else {
         swalert('warning','Terjadi Kesalahan!', 'Gagal edit biodata.');

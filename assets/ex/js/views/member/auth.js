@@ -29,6 +29,12 @@ function getMember(id_member, token) {
     success: function(response){
       $("#id_member").val(response.id_member);
       $("#username").val(response.username);
+      $('#nama').val(response.nama);
+      $('#email').val(response.email);
+      $('#no_hp').val(response.no_hp);
+      $('#tanggal_lahir').val(response.tanggal_lahir);
+      $('#alamat').val(response.alamat);
+      $('#jenis_kelamin').val(response.jenis_kelamin);
       $('#nav_nama').text(response.nama);
       $("#profil").attr("href", "/profil/"+response.username);
       $(".avatar").attr("src", response.foto);

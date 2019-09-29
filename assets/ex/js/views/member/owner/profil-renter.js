@@ -25,7 +25,9 @@ function getProfilRenter(id_renter, token){
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
+      console.log(response);
       // $(".id_renter").val(response.id_renter);
+      $(".kamar").text(response.kamar);
       $(".nama").val(response.nama);
       $('.email').val(response.email);
       $('.no_hp').val(response.no_hp);

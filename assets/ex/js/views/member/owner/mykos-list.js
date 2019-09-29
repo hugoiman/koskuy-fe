@@ -36,7 +36,7 @@ function getMyKosList(id_member,token) {
                 'Rp <span class="rupiah">'+value.harga_sewa_list[0].bulanan+'</span>/bulan </b><br><span class="bullet"></span>'+
                 '<small>Diperbarui 2 hari yang lalu</small>'+
                 '<div class="article-cta">'+
-                  '<a href="/dashboard?kos=' + value.id_kos +'" class="btn btn-primary"><i class="far fa-eye"></i> Lihat</a> '+
+                  '<a href="/laporan-pembayaran?kos='+value.id_kos+'&bulan=September&tahun=2019" class="btn btn-primary"><i class="far fa-eye"></i> Lihat</a> '+
                   '<a href="/pengaturan?kos=' + value.id_kos +'" class="btn btn-warning"><i class="fas fa-cog"></i> Pengaturan</a>'+
                 '</div>'+
               '</div>'+

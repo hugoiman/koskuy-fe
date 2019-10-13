@@ -6,6 +6,7 @@
 
   <!-- External -->
   <!-- CSS Libraries -->
+  <link rel="stylesheet" href="/node_modules/chocolat/dist/css/chocolat.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
@@ -27,7 +28,7 @@
                 <div class="row">
                   <div class="col-12 col-sm-4 col-lg-3">
                     <div class="author-box-left">
-                      <img alt="image" src="/static/img/members/member.png" class="rounded-circle author-box-picture avatar_profil" style="margin-top:55px;">
+                      <img alt="image" src="/static/img/members/member.png" class="rounded-circle author-box-picture avatar_profil" style="margin-top:55px; margin-left:25px; ">
                       <div class="clearfix"></div>
                     </div>
                   </div>
@@ -52,7 +53,7 @@
                               <div class="form-group col-md-2 mb-2">
                                 <label>Nama*</label>
                               </div>
-                              <div class="form-group mx-sm-4 mb-2">
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
                                 <input type="text" class="form-control form-control-sm nama biodata" id="input_nama" readonly="">
                                 <div class="invalid-feedback" id="invalid_nama"></div>
                               </div>
@@ -61,16 +62,34 @@
                               <div class="form-group col-md-2 mb-2">
                                 <label>Username*</label>
                               </div>
-                              <div class="form-group mx-sm-4 mb-2">
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
                                 <input type="text" class="form-control form-control-sm username biodata" id="input_username" readonly="">
                                 <div class="invalid-feedback" id="invalid_username"></div>
                               </div>
                             </div>
                             <div class="form-row">
                               <div class="form-group col-md-2 mb-2">
+                                <label>No HP*</label>
+                              </div>
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
+                                <input type="text" class="form-control form-control-sm no_hp biodata" id="input_no_hp" readonly="">
+                                <div class="invalid-feedback" id="invalid_no_hp"></div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>Email*</label>
+                              </div>
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
+                                <input type="text" class="form-control form-control-sm email biodata" id="input_email" readonly="">
+                                <div class="invalid-feedback" id="invalid_email"></div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
                                 <label>Tanggal Lahir</label>
                               </div>
-                              <div class="form-group mx-sm-4 mb-2">
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
                                 <input type="text" class="form-control form-control-sm tanggal_lahir biodata" id="input_tanggal_lahir" readonly="">
                                 <div class="invalid-feedback" id="invalid_tanggal_lahir"></div>
                               </div>
@@ -79,7 +98,7 @@
                               <div class="form-group col-md-2 mb-2">
                                 <label>Jenis Kelamin</label>
                               </div>
-                              <div class="form-group mx-sm-4 mb-2">
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
                                 <div class="form-check form-check-inline">
                                   <input class="form-check-input pria gender" type="radio" name="gender" id="inlineradio1" value="pria" disabled>
                                   <label class="form-check-label" for="inlineradio1">Pria</label>
@@ -88,14 +107,27 @@
                                   <input class="form-check-input wanita gender" type="radio" name="gender" id="inlineradio2" value="wanita" disabled>
                                   <label class="form-check-label" for="inlineradio2">Wanita</label>
                                 </div>
+                                <div class="form-check form-check-inline">
+                                  <div class="invalid-feedback" id="invalid_gender"></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>Pekerjaan*</label>
+                              </div>
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
+                                <input type="text" class="form-control form-control-sm pekerjaan biodata" id="input_pekerjaan" readonly="">
+                                <div class="invalid-feedback" id="invalid_pekerjaan"></div>
                               </div>
                             </div>
                             <div class="form-row">
                               <div class="form-group col-md-2 mb-2">
                                 <label>Alamat</label>
                               </div>
-                              <div class="form-group mx-sm-4 mb-2">
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
                                 <input type="text" class="form-control form-control-sm alamat biodata" id="input_alamat" readonly="">
+                                <div class="invalid-feedback" id="invalid_alamat"></div>
                               </div>
                             </div>
                             <div class="card-footer text-right">
@@ -104,6 +136,40 @@
                               <input type="button" value="Simpan" class="btn btn-primary mr-1" id="btnSimpanBiodata">
                             </div>
                             <br>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                                <label>Identitas (KTP)</label>
+                              </div>
+                              <div class="form-group col-md-9 mx-sm-4 mb-2 col-sm-6 col-lg-4">
+                                <div class="gallery gallery-fw" data-item-height="150">
+                                  <div class="gallery-item" data-image="/static/img/news/img09.jpg" data-title="Image 1"></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-2 mb-2">
+                              </div>
+                              <div class="form-group col-md-9 mx-sm-4 mb-2">
+                                <form class="needs-validation" id="changektp" novalidate="" action="" method="POST" enctype="multipart/form-data">
+                                  <div class="card-body">
+                                    <div class="form-row">
+                                      <div class="custom-file col-md-5">
+                                        <input type="file" class="custom-file-input" name="file" id="input_ktp" accept="image/*" required>
+                                        <input type="text" class="id_member" name="id_member" hidden>
+                                        <input type="text" class="username" name="username" hidden>
+                                        <input type="text" class="ktp" name="old_ktp" id="old_ktp" hidden>
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                        <small class="form-text text-muted">*Maks. 2 MB</small>
+                                      </div>
+                                      <!-- <div class="col-md-7"> -->
+                                      <button type="submit" class="btn btn-primary mx-sm-3" id="btnSimpanKtp">Simpan</button>
+                                      <!-- </div> -->
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                            <!-- <br>
                             <h6>Kontak</h6>
                             <div class="form-row">
                               <div class="form-group col-md-2 mb-2">
@@ -120,8 +186,8 @@
                                 <div class="badge badge-danger icon-left mx-sm-2 mb-2"><i class="fas fa-exclamation-triangle"></i> Belum Diverifikasi </div>
                                 <a class="mb-2" data-toggle="modal" href="#modalEditEmail">Verifikasi</a>
                               </div>
-                            </div>
-                            <div class="form-row">
+                            </div> -->
+                            <!-- <div class="form-row">
                               <div class="form-group col-md-2 mb-2">
                                 <label>Nomer HP</label>
                               </div>
@@ -137,7 +203,7 @@
                                 <div class="badge badge-danger icon-left mx-sm-2 mb-2"><i class="fas fa-exclamation-triangle"></i> Belum Diverifikasi </div>
                                 <a href="#" class="mb-2">Verifikasi</a>
                               </div>
-                            </div>
+                            </div> -->
                           </div>
                         </form>
                       </div>
@@ -219,7 +285,7 @@
       </div>
 
       <!-- Modal Edit Email -->
-      <div class="modal fade" tabindex="-1" role="dialog" id="modalEditEmail">
+      <!-- <div class="modal fade" tabindex="-1" role="dialog" id="modalEditEmail">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -239,12 +305,15 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       {{template "_footer" .}}
 
       <!-- JS Libraries -->
       <script src="/static/ex/js/views/member/profil.js"></script>
+      <!-- JS Libraies -->
+      <script src="/node_modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+      <script src="/node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
       <script type="text/javascript">
@@ -285,17 +354,42 @@
             btnBatalBiodata();
           });
           $("#btnSimpanBiodata").click(function(){
+            checkGender();
+            checkNama();
+            checkUsername();
+            checkEmail();
+            checkNo_hp();
+            checkAlamat();
+            checkPekerjaan();
             if ($(".is-invalid").is(":visible")) {
-              swalert('warning','Terjadi Kesalahan', 'Silahkan periksa kembali data diri anda.');
+              // swalert('warning','Terjadi Kesalahan', 'Silahkan periksa kembali data diri anda.');
             } else {
               btnSimpanBiodata();
             }
           });
+
+          $("#input_nama").keyup(function(){
+            checkNama();
+          });
+
           $("#input_username").keyup(function(){
             checkUsername();
           });
-          $("#input_nama").keyup(function(){
-            checkNama();
+
+          $("#input_no_hp").keyup(function(){
+            checkNo_hp();
+          });
+
+          $("#input_email").keyup(function(){
+            checkEmail();
+          });
+
+          $("#input_pekerjaan").keyup(function(){
+            checkPekerjaan();
+          });
+
+          $("#input_alamat").keyup(function(){
+            checkAlamat();
           });
 
           // Ubah email

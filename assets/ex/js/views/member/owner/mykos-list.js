@@ -20,7 +20,7 @@ function getMyKosList(id_member,token) {
         $("#empty").removeAttr('hidden');
       } else {
         $("#mykoslist").removeAttr('hidden');
-        $("#page_name").text("Daftar My Kos");
+        $("#page_name").text("Daftar Kos Saya");
         $.each(data.kos_list, function(idx, value) {
           var html = '<div class="col-12 col-sm-6 col-md-6 col-lg-4">'+
             '<article class="article">'+
@@ -32,17 +32,19 @@ function getMyKosList(id_member,token) {
                 '</div>'+
               '</div>'+
               '<div class="article-details">'+
-                '<b>'+value.tipe_kos+' <span class="bullet"></span> Lowokwaru<br>'+
+                '<b>'+value.tipe_kos+' <span class="bullet"></span> Lowokwaru <div class="badge badge-success">'+value.status_kos+'</div><br>'+
                 'Rp <span class="rupiah">'+value.harga_sewa_list[0].bulanan+'</span>/bulan </b><br><span class="bullet"></span>'+
-                '<small>Diperbarui 2 hari yang lalu</small>'+
+                '<small>'+value.update_at+'</small>'+
                 '<div class="article-cta">'+
-                  '<a href="/laporan-pembayaran?kos='+value.id_kos+'&bulan=September&tahun=2019" class="btn btn-primary"><i class="far fa-eye"></i> Lihat</a> '+
-                  '<a href="/pengaturan?kos=' + value.id_kos +'" class="btn btn-warning"><i class="fas fa-cog"></i> Pengaturan</a>'+
+                  '<a href="/laporan-pembayaran?kos='+value.slug+'&bulan=September&tahun=2019" class="btn btn-primary"><i class="fas fa-cogs"></i> Kelola</a> '+
+
                 '</div>'+
               '</div>'+
             '</article>'+
           '</div>';
+
           $("#mykoslist").append(html);
+          
           $(".rupiah").mask('000.000.000', {reverse: true});
         });
       }

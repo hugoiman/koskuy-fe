@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{template "_head" .}}
+
+  <!-- External -->
+</head>
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+      {{template "_side-bar" .}}
+
+      <div class="main-content">
+        <section class="section">
+
+          {{template "_section-header" .}}
+
+          <div class="section-body">
+            <div class="invoice">
+              <div class="invoice-print">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="card-body">
+                      <div class="invoice-title">
+                        <h5 id="nama_kos"></h5>
+                        <div class="invoice-number">Invoice #12345</div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <img id="avatar_pembayaran">
+                        </div>
+                        <div class="col-md-5">
+                          <br>
+                          <address>
+                            Nama Penyewa: <strong id="nama"></strong><br>
+                            No Kamar: <strong id="kamar"></strong><br>
+                            Durasi: <strong id="durasi"></strong><br>
+                            Mulai Masuk: <strong id="tgl_masuk"></strong><br>
+                            Batas Akhir: <strong id="tgl_akhir"></strong>
+                          </address>
+                        </div>
+                        <div class="col-md-4 text-md-right">
+                          <br>
+                          <address>
+                            Tanggal Penagihan: <strong id="tgl_penagihan"></strong><br>
+                            Jatuh Tempo: <strong id="jatuh_tempo"></strong><br>
+                            Telah Dibayar: Rp. <strong id="dibayar" class="rupiah"></strong><br>
+                            <h3><div class="badge badge-danger">Tagihan: Rp. <b id="tagihan" class="rupiah"> </b></div></h3>
+                          </address>
+                          <button class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="edit"><i class="far fa-edit"></i> Edit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+
+                  <div class="col-md-6">
+                    <div class="section-title">Biaya <button class="btn btn-sm btn-primary btn-icon icon-left" style="float:right;"><i class="fas fa-plus"></i> Biaya Tambahan</button></div>
+                    <div class="table-responsive">
+                      <table class="table table-striped table-hover table-md"  id="tb_biaya_tambahan">
+                        <tr>
+                          <th data-width="40">#</th>
+                          <th>Keterangan</th>
+                          <th class="text-right">Nominal (IDR)</th>
+                          <th></th>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Harga Sewa Kamar</td>
+                          <td class="text-right"><b class="rupiah" id="harga_sewa"></b></td>
+                          <td><butoon class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="edit"><i class="far fa-edit"></i></button></td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="section-title">Pembayaran <button class="btn btn-sm btn-primary btn-icon icon-left" style="float:right;"><i class="fas fa-plus"></i> Pembayaran</button></div>
+                    <div class="table-responsive">
+                      <table class="table table-striped table-hover table-md" id="tb_tgl_pembayaran">
+                        <tr>
+                          <th data-width="40">#</th>
+                          <th>Tanggal Pembayaran</th>
+                          <th class="text-right">Nominal (IDR)</th>
+                          <th></th>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="text-md-right">
+                <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <script src="/static/ex/js/views/member/owner/getMyKos.js"></script>
+      <script src="/static/ex/js/views/member/owner/invoice.js"></script>
+      <script src="/static/ex/js/igorescobar-jQuery-Mask-Plugin-535b4e4/jquery.mask.js"></script>
+    </div>
+  </div>
+</body>
+</html>

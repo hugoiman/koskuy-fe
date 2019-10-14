@@ -25,61 +25,66 @@
 
           <div class="section-body">
             <div class="row">
-              {{template "_count-status-member"}}
+              {{template "_count-status-pembayaran"}}
             </div>
           </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <!-- <div class="card-header">
-                    <h4>Laporan Bulanan</h4>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <!-- <div class="card-header">
+                  <h4>Laporan Bulanan</h4>
 
-                    <div class="section-header-button">
-                      <button id="add_pembayaran" type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Add New</button>
-                    </div>
-                  </div> -->
-                  <div class="card-body">
-                    <form>
-                      <div class="form-group">
-                        <label>Bulan</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              <i class="far fa-calendar-alt"></i>
-                            </div>
+                  <div class="section-header-button">
+                    <button id="add_pembayaran" type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Add New</button>
+                  </div>
+                </div> -->
+                <div class="card-body">
+                  <!-- <form> -->
+                    <div class="form-group">
+                      <label>Periode</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">
+                            <i class="far fa-calendar-alt"></i>
                           </div>
-                          <input type="text" class="form-control datepicker" id="date" data-date-format='MM yyyy' value="September 2019">
                         </div>
+                        <input type="text" class="form-control col-md-3 col-sm-12 datepicker" id="date" data-date-format='MM yyyy' value="">
+                        <!-- <div class="input-group-btn"> -->
+                          <button class="btn btn-primary mx-sm-2" id="btn-search"><i class="fas fa-search"></i></button>
+                        <!-- </div> -->
                       </div>
-                    </form>
-                    Total pembayaran yang masuk: <b>7.500.000</b> dari 10.000.000
-                    <div class="progress mb-3">
-                      <div class="progress-bar" role="progressbar" data-width="75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
                     </div>
-                    <div class="table-responsive">
-                      <table class="table table-striped" id="table-1">
-                        <thead>
-                          <tr>
-                            <th class="text-center">No</th>
-                            <th>Anak Kos</th>
-                            <th>Durasi</th>
-                            <th>Kamar</th>
-                            <th>Selesai</th>
-                            <th class="total">Total</th>
-                            <th class="dibayar">Dibayar</th>
-                            <th class="tagihan">Tagihan</th>
-                            <th><center>Status</center></th>
-                            <th>Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                      </table>
-                    </div>
+                  <!-- </form> -->
+                  Total pembayaran yang masuk: Rp <div class="badge badge-primary"><h6 class="total-pemasukan rupiah"></h6></div>
+                  <!-- <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" data-width="75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                  </div> -->
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="table-1">
+                      <thead>
+                        <tr>
+                          <!-- <th class="text-center">No</th> -->
+                          <th>Invoice</th>
+                          <th>Anak Kos</th>
+                          <!-- <th>Durasi</th> -->
+                          <th>Kamar</th>
+                          <th><center>Tgl Pembayaran</center></th>
+                          <th class="nominal">Nominal</th>
+                          <th>Berakhir</th>
+                          <th class="total">Total Pembayaran</th>
+                          <th class="tagihan">Tagihan</th>
+                          <th><center>Status</center></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </section>
       </div>
 
@@ -106,6 +111,14 @@
             autoclose: true,
             viewMode: "months",
             minViewMode: "months"
+          });
+
+          $("#btn-search").click(function() {
+            var slug    = getUrlParameter('kos');
+            var periode = $("#date").val().split(" ");
+            var bulan = periode[periode.length-2];
+            var tahun = periode[periode.length-1];
+            window.location.href = "/laporan-pembayaran?kos="+slug+"&bulan="+bulan+"&tahun="+tahun;
           });
 
           $("#add_pembayaran").click(async function(){

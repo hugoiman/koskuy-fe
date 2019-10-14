@@ -78,7 +78,7 @@ func main() {
   })
 
   //  Reset Password
-  e.GET("/forgot-password", func(c echo.Context) error {
+  e.GET("/lupa-password", func(c echo.Context) error {
     e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
       "views/guest/forgot-password.html", "views/guest/head.html", "views/guest/footer.html",
       )),
@@ -99,6 +99,7 @@ func main() {
     e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
       "views/member/head.html", "views/member/header.html", "views/member/footer.html",
       "views/member/section-header.html","views/member/nav-header.html",
+      // "views/member/notification.html",
       "views/member/home.html",
       )),
     }
@@ -158,14 +159,35 @@ func main() {
     return c.Render(http.StatusOK, "laporan-pembayaran.html", nil)
   })
 
+  e.GET("/pengaturan", func(c echo.Context) error {
+    e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
+      "views/member/head.html", "views/member/owner/header.html", "views/member/footer.html",
+      "views/member/owner/section-header.html", "views/member/nav-header.html",
+      "views/member/owner/pengaturan.html",
+      )),
+    }
+    return c.Render(http.StatusOK, "pengaturan.html", nil)
+  })
+
   e.GET("/pembayaran", func(c echo.Context) error {
     e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
       "views/member/head.html", "views/member/owner/header.html", "views/member/footer.html",
       "views/member/owner/section-header.html", "views/member/nav-header.html",
-      "views/member/owner/detail-pembayaran.html",
+      "views/member/owner/invoice.html",
       )),
     }
-    return c.Render(http.StatusOK, "detail-pembayaran.html", nil)
+    return c.Render(http.StatusOK, "invoice.html", nil)
+  })
+
+  //  BOOKING
+  e.GET("/booking", func(c echo.Context) error {
+    e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
+      "views/member/head.html", "views/member/owner/header.html", "views/member/footer.html",
+      "views/member/owner/section-header.html", "views/member/nav-header.html",
+      "views/member/owner/booking.html",
+      )),
+    }
+    return c.Render(http.StatusOK, "booking.html", nil)
   })
 
   // RENTER
@@ -179,7 +201,7 @@ func main() {
     return c.Render(http.StatusOK, "daftar-renter.html", nil)
   })
 
-  e.GET("/profil-anak-kos", func(c echo.Context) error {
+  e.GET("/anak-kos/:slug", func(c echo.Context) error {
     e.Renderer = &Template{ templates: template.Must(template.ParseFiles(
       "views/member/head.html", "views/member/owner/header.html", "views/member/footer.html",
       "views/member/owner/section-header.html", "views/member/nav-header.html",

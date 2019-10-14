@@ -1,15 +1,15 @@
 window.onload = function () {
   var token = Cookies.get("cookie_token");
-  var id_kos = getUrlParameter('kos');
-  getData(token, id_kos);
+  var slug = getUrlParameter('kos');
+  getData(token, slug);
 }
 
-const getData = async (token, id_kos) => {
+const getData = async (token, slug) => {
   const getCUI        = await getComponentUI();
   const jsonToken     = await authToken(token);
   const getDataMember = await getMember(jsonToken.Id_user, token);
-  const getDataMyKos  = await getMyKos(id_kos, jsonToken.Id_user, token); // wajib
-  const getDftrRenter = await getDaftarRenter(id_kos, jsonToken.Id_user, token);
+  const getDataMyKos  = await getMyKos(slug, jsonToken.Id_user, token); // wajib
+  const getDftrRenter = await getDaftarRenter(getDataMyKos.id_kos, jsonToken.Id_user, token);
 }
 
 function getComponentUI(){
@@ -56,22 +56,27 @@ function displayDataTable(dataJson) {
   $("#table-1").dataTable({
     data: dataJson.renter_list,
     columns: [
-      { "data": null,"sortable": false,
-        render: function (data, type, row, meta) {
-          return meta.row + meta.settings._iDisplayStart + 1;
-        }
-      },
+      // { "data": null,"sortable": false,
+      //   render: function (data, type, row, meta) {
+      //     return meta.row + meta.settings._iDisplayStart + 1;
+      //   }
+      // },
       { data: function (data, type, dataToSet) {
           return '<img alt="image" src="'+data.foto+'" class="rounded-circle" width="35" data-toggle="tooltip" title="'+data.nama+'"> '+data.nama
         }
       },
-      { data: "no_hp"},
-      { data: "jenis_kelamin"},
       { data: "kamar"},
-      { data: "status_renter"},
+      { data: "no_hp"},
+      { data: "pekerjaan"},
+      { data: "status_renter",
+        render: function (dataField) {
+          return (dataField == "aktif" ? '<center><div class="badge badge-success">Aktif</div></center>'
+          : '<center><div class="badge badge-danger">Tidak Aktif</div></center>');
+        }
+      },
       { data: function (data, type, dataToSet) {
-          return '<a href="/profil-anak-kos?kos='+data.id_kos+'&anak-kos='+data.id_renter+'" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="view"><i class="far fa-eye"></i></a>'+
-          ' <button type="submit" class="btn btn-sm btn-danger btn-hapus_pembayaran" d;ata-toggle="tooltip" data-placement="top" title="hapus"><i class="far fa-trash-alt"></i></button>';
+          return '<a href="/anak-kos/'+data.slug+'" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="view"><i class="fas fa-eye"></i></a>';
+          // ' <button type="submit" class="btn btn-sm btn-danger btn-hapus_pembayaran" d;ata-toggle="tooltip" data-placement="top" title="hapus"><i class="far fa-trash-alt"></i></button>';
         }
       }
     ],

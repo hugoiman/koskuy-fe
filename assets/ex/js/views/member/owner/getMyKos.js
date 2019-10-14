@@ -1,19 +1,24 @@
-function getMyKos(id_kos, id_member, token){
-  $.ajax({
-    url   : domain+"/mykos/"+id_kos+"/"+id_member,
+function getMyKos(slug, id_member, token){
+  var mykos = $.ajax({
+    url   : domain+"/mykos/"+slug+"/"+id_member,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
-      console.log(response);
       if (response.id_kos != 0) {
         $(".section").removeAttr('hidden');
-        $("#title").text(response.nama_kos);
+        // $("#title").text(response.nama_kos);
         $(".nama_kos").text(response.nama_kos);
-        $(".link_dashboard").attr("href", "/dashboard?kos="+response.id_kos);
-        $(".link_laporan-pembayaran").attr("href", "/laporan-pembayaran?kos="+response.id_kos+"&bulan=September&tahun=2019");
-        $(".link_laporan-bulanan").attr("href", "/laporan-bulanan?kos="+response.id_kos+"&bulan=September&tahun=2019");
-        $(".link_daftar-renter").attr("href", "/daftar-anak-kos?kos="+response.id_kos);
-        $(".link_pengaturan").attr("href", "/pengaturan?kos="+response.id_kos);
+        $(".link_dashboard").attr("href", "/dashboard?kos="+response.slug);
+        $(".link_laporan-pembayaran").attr("href", "/laporan-pembayaran?kos="+response.slug+"&bulan=September&tahun=2019");
+        $(".link_laporan-bulanan").attr("href", "/laporan-bulanan?kos="+response.slug+"&bulan=September&tahun=2019");
+        $(".link_daftar-renter").attr("href", "/daftar-anak-kos?kos="+response.slug);
+        $(".link_pengaturan").attr("href", "/pengaturan?kos="+response.slug);
+
+        var btn_booking = (response.booking == "Tidak Terdaftar" ? '<a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split"><i class="fas fa-calendar-check"></i> Aktifkan Fitur Booking</a>'
+        :'');
+
+        $("#btn_booking").append(btn_booking);
+
       } else {
         $(".section").hide();
         var error404 ='<section class="section">'+
@@ -46,5 +51,6 @@ function getMyKos(id_kos, id_member, token){
     error:function(error){
 
     }
-  })
+  });
+  return mykos;
 }

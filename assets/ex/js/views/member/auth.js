@@ -35,6 +35,7 @@ function getMember(id_member, token) {
       $('#tanggal_lahir').val(response.tanggal_lahir);
       $('#alamat').val(response.alamat);
       $('#jenis_kelamin').val(response.jenis_kelamin);
+      $('#pekerjaan').val(response.pekerjaan);
       $('#nav_nama').text(response.nama);
       $("#profil").attr("href", "/profil/"+response.username);
       $(".avatar").attr("src", response.foto);
@@ -60,3 +61,19 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
   }
 };
+
+function load_notification(view = ''){
+  $.ajax({
+    url: domain+"/notification/100",
+    method:"POST",
+    data:{view:view},
+    dataType:"json",
+    success:function(data) {
+      $('.dropdown-menu').html(data.notification);
+      if(data.unseen_notification > 0)
+      {
+        $('.count').html(data.unseen_notification);
+      }
+    }
+  });
+}

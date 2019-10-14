@@ -1,16 +1,16 @@
 window.onload = function () {
   var token = Cookies.get("cookie_token");
-  var id_kos = getUrlParameter('kos');
-  var id_renter = getUrlParameter('anak-kos');
-  getData(token, id_kos, id_renter);
+  var uri   = new URI(window.location.href);
+  var slug  = uri.segment(1); //  slug renter
+  getData(token, slug);
 }
 
-const getData = async (token, id_kos, id_renter) => {
+const getData = async (token, slug) => {
   const getCUI        = await getComponentUI();
   const jsonToken     = await authToken(token);
   const getDataMember = await getMember(jsonToken.Id_user, token);
-  const getDataMyKos  = await getMyKos(id_kos, jsonToken.Id_user, token); // wajib
-  const getRenter     = await getProfilRenter(id_renter, token);
+  const getRenter     = await getProfilRenter(slug, token);
+  const getDataMyKos  = await getMyKos(getRenter.id_kos, jsonToken.Id_user, token); // wajib
 }
 
 function getComponentUI(){
@@ -19,14 +19,14 @@ function getComponentUI(){
   $("#title").text("Profil Anak Kos");
 }
 
-function getProfilRenter(id_renter, token){
-  $.ajax({
-    url   : domain+"/anak-kos/"+id_renter,
+function getProfilRenter(slug, token){
+  var output = $.ajax({
+    url   : domain+"/anak-kos/"+slug,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
       console.log(response);
-      // $(".id_renter").val(response.id_renter);
+      // $(".slug").val(response.slug);
       $(".kamar").text(response.kamar);
       $(".nama").val(response.nama);
       $('.email').val(response.email);
@@ -59,7 +59,8 @@ function getProfilRenter(id_renter, token){
     error:function(error){
       console.log("error");
     }
-  })
+  });
+  return output;
 }
 
 function checkNama(){

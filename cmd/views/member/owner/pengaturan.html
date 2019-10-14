@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  {{template "_head" .}}
+
+  <!-- External -->
+</head>
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+      {{template "_side-bar" .}}
+
+      <div class="main-content">
+        <section class="section">
+
+          {{template "_section-header" .}}
+
+          <div class="section-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="card card-large-icons">
+                  <div class="card-icon bg-primary text-white">
+                    <i class="fas fa-home"></i>
+                  </div>
+                  <div class="card-body">
+                    <h4>Edit Data Kos</h4>
+                    <p>Perbarui lokasi, data kos, fasilitas dan foto ruangan kos kamu.</p>
+                    <a href="features-setting-detail.html" class="card-cta">Ubah Pengaturan <i class="fas fa-chevron-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card card-large-icons">
+                  <div class="card-icon bg-primary text-white">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                  </div>
+                  <div class="card-body">
+                    <h4>Pembayaran</h4>
+                    <p>Penagihan jadi lebih mudah. Yuk! Kelola tanggal penagihan dan denda pada kos kamu.</p>
+                    <a href="features-setting-detail.html" class="card-cta">Ubah Pengaturan <i class="fas fa-chevron-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card card-large-icons">
+                  <div class="card-icon bg-primary text-white">
+                    <i class="fas fa-question"></i>
+                  </div>
+                  <div class="card-body">
+                    <h4>Data Lain Anak Kos</h4>
+                    <p>Yuk! Tanyakan pertanyaan pendukung kepada calon anak kos kamu.</p>
+                    <a href="features-setting-detail.html" class="card-cta">Ubah Pengaturan <i class="fas fa-chevron-right"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="card card-large-icons">
+                  <div class="card-icon bg-primary text-white">
+                    <i class="fas fa-calendar-check"></i>
+                  </div>
+                  <div class="card-body">
+                    <h4>Booking</h4>
+                    <p>Lebih cepat dapat calon anak kos dengan booking. Yuk! Kelola fitur booking kamu.</p>
+                    <a href="features-setting-detail.html" class="card-cta">Ubah Pengaturan <i class="fas fa-chevron-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <!-- Page Specific JS File -->
+      <script src="/static/ex/js/views/member/owner/pengaturan.js"></script>
+      <script src="/static/ex/js/views/member/owner/getMyKos.js"></script>
+
+    </div>
+  </div>
+</body>
+</html>

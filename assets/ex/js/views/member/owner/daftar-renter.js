@@ -10,6 +10,7 @@ const getData = async (token, slug) => {
   const getDataMember = await getMember(jsonToken.Id_user, token);
   const getDataMyKos  = await getMyKos(slug, jsonToken.Id_user, token); // wajib
   const getDftrRenter = await getDaftarRenter(getDataMyKos.id_kos, jsonToken.Id_user, token);
+  const getTotalStatus  = await getStatusPembayaran(token, getDataMyKos.id_kos);
 }
 
 function getComponentUI(){
@@ -74,6 +75,13 @@ function displayDataTable(dataJson) {
           : '<center><div class="badge badge-danger">Tidak Aktif</div></center>');
         }
       },
+      { data: "status_pembayaran",
+        render: function (dataField) {
+          return (dataField == "lunas" ? '<center><div class="badge badge-success">Lunas</div></center>'
+          : dataField == "angsur" ? '<center><div class="badge badge-warning">Angsur</div></center>'
+          : '<center><div class="badge badge-danger">Belum Bayar</div></center>');
+        }
+      },
       { data: function (data, type, dataToSet) {
           return '<a href="/anak-kos/'+data.slug+'" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="view"><i class="fas fa-eye"></i></a>';
           // ' <button type="submit" class="btn btn-sm btn-danger btn-hapus_pembayaran" d;ata-toggle="tooltip" data-placement="top" title="hapus"><i class="far fa-trash-alt"></i></button>';
@@ -81,4 +89,20 @@ function displayDataTable(dataJson) {
       }
     ],
   });
+}
+
+function getStatusPembayaran(token, id_kos) {
+  $.ajax({
+    url   : domain+"/status-pembayaran/"+id_kos,
+    type  : 'GET',
+    headers: {"Authorization": "Bearer "+token},
+    success: function(response){
+      $('#total-renter').text(response.total_renter);
+      $('#total-lunas').text(response.lunas);
+      $('#total-angsur').text(response.angsur);
+      $('#total-belum_bayar').text(response.belum_bayar);
+    }, error:function(error){
+      console.log("error");
+    }
+  })
 }

@@ -21,7 +21,7 @@ const getData = async (token, slug, bulan, tahun, strbulan) => {
   const getDataMember = await getMember(jsonToken.Id_user, token);
   const getDataMyKos  = await getMyKos(slug, jsonToken.Id_user, token); // wajib
   const getLaporan    = await getLaporanPembayaran(token, getDataMyKos.id_kos, bulan, tahun);
-  const getStatusPby  = await getStatusPembayaran(token, getDataMyKos.id_kos);
+  const getTotalStatus  = await getStatusPembayaran(token, getDataMyKos.id_kos);
 }
 
 function getComponentUI(strbulan, tahun){
@@ -169,7 +169,6 @@ function getStatusPembayaran(token, id_kos) {
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
-      console.log(response);
       $('#total-renter').text(response.total_renter);
       $('#total-lunas').text(response.lunas);
       $('#total-angsur').text(response.angsur);

@@ -26,6 +26,7 @@ function getDetailPembayaran(token, id_pembayaran) {
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
+      console.log(response);
       // $("#avatar_pembayaran").attr("src", response.foto);
       $("#nama").text(response.nama);
       $("#nama_kos").text(response.nama_kos);
@@ -39,6 +40,10 @@ function getDetailPembayaran(token, id_pembayaran) {
       $("#dibayar").text(response.total_dibayar);
       $("#tagihan").text(response.tagihan);
       $("#harga_sewa").text(response.harga_sewa);
+      if (response.denda != 0) {
+        $("#tr_denda").attr("hidden", false)
+        $("#denda").text(response.denda);
+      }
 
       var strfoto = response.foto.split("/");
       str4 = strfoto[strfoto.length-1];
@@ -76,8 +81,12 @@ function getDetailPembayaran(token, id_pembayaran) {
       $("#tb_tgl_pembayaran").append(td_total_dibayar);
 
       $.each(response.biaya_tambahan_list, function(idx, value) {
+        var no = 2;
+        if ($("#tr_denda").is(":visible")) {
+          no = 3;
+        }
         var data = '<tr>'+
-          '<td>'+(idx+2)+'</td>'+
+          '<td>'+(idx+no)+'</td>'+
           '<td>'+value.keterangan+'</td>'+
           '<td class="text-right"><b class="rupiah">'+value.nominal+'</b></td>'+
           '<td><butoon class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="edit"><i class="far fa-edit"></i></button></td>'+

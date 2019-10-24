@@ -28,7 +28,7 @@ function getDaftarRenter(id_kos, id_member, token){
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
       displayDataTable(response);
-      // $.each(response.renter_list, function(idx, value) {
+      // $.each(response.daftar_renter, function(idx, value) {
       //   var data = '<tr>'+
       //     '<td>'+(idx+1)+'</td>'+
       //     '<td>'+
@@ -55,7 +55,7 @@ function getDaftarRenter(id_kos, id_member, token){
 
 function displayDataTable(dataJson) {
   $("#table-1").dataTable({
-    data: dataJson.renter_list,
+    data: dataJson.daftar_renter,
     columns: [
       // { "data": null,"sortable": false,
       //   render: function (data, type, row, meta) {

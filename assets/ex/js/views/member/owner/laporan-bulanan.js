@@ -40,17 +40,17 @@ function getLaporanBulanan(token, id_kos, tahun){
 
 function displayDataTable(dataJson){
   $("#table-1").dataTable({
-    data: dataJson.bulanan_list,
+    data: dataJson.laporan_bulanan,
     columns: [
-      { data: "tanggal_pembayaran"},
-      { data: "nominal", className: "rupiah"},
+      { data: "periode"},
+      { data: "pemasukan", className: "rupiah"},
       { data:
         function (data, type, dataToSet) {
             return '<td>500.000</td>';
           }
       },
       { data: function (data, type, dataToSet) {
-          var bulan_tahun = data.tanggal_pembayaran.split(" ");
+          var bulan_tahun = data.periode.split(" ");
           return '<a href="laporan-pembayaran?kos=Kos-Array-Suhat&bulan='+bulan_tahun[0]+'&tahun='+bulan_tahun[1]+'" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="lihat"><i class="far fa-eye"></i></a>';
         }
       }

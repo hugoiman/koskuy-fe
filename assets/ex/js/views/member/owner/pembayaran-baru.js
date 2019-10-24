@@ -5,17 +5,18 @@ window.onload = function () {
 }
 
 const getData = async (token, slug) => {
-  const getCUI        = await getComponentUI(slug);
   const jsonToken     = await authToken(token);
   const getDataMember = await getMember(jsonToken.Id_user, token);
   const getDataMyKos  = await getMyKos(slug, jsonToken.Id_user, token); // wajib
+  const getCUI        = await getComponentUI(slug, getDataMyKos.id_kos);
   const getRenter     = await getDaftarRenter(getDataMyKos.id_kos, jsonToken.Id_user, token);
   const getHargaSewa  = await getHargaSewaKos(getDataMyKos.harga_sewa_list);
 }
 
-function getComponentUI(slug){
+function getComponentUI(slug, id_kos){
   $("#page_name").text("Pembayaran Baru");
   $("#title").text("Pembayaran Baru");
+  $(".id_kos").val(id_kos);
 }
 
 function getDaftarRenter(id_kos, id_member, token){
@@ -24,7 +25,7 @@ function getDaftarRenter(id_kos, id_member, token){
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
-      $.each(response.renter_list, function(idx, value) {
+      $.each(response.daftar_renter, function(idx, value) {
         var data = '<option value="'+value.id_renter+','+value.id_member+'">'+value.nama+'</option>';
         $("#nama_anak_kos").append(data);
       });
@@ -63,6 +64,7 @@ function getHargaSewaKos(harga_sewa_list) {
 function validasi_pembayaran() {
   var id             = $("#nama_anak_kos").val().split(",");
 
+  var id_kos         = parseInt($(".id_kos").val());
   var id_renter      = parseInt(id[0]);
   var id_member      = parseInt(id[1]);
   var kamar          = $("#kamar").val();
@@ -96,7 +98,7 @@ function validasi_pembayaran() {
     // swalert('warning','Terjadi Kesalahan', 'Mohon lengkapi isi form dengan benar.');
   } else {
     var jsonData  =  JSON.stringify({
-      id_renter, id_member, kamar, durasi, tipe_pembayaran, tanggal_masuk, tanggal_akhir, tanggal_penagihan,
+      id_kos, id_renter, id_member, kamar, durasi, tipe_pembayaran, tanggal_masuk, tanggal_akhir, tanggal_penagihan,
       denda, jatuh_tempo, harga_sewa, total_pembayaran, total_dibayar, tanggal_pembayaran, tagihan, status_pembayaran
     });
     console.log(jsonData);
@@ -111,10 +113,10 @@ function validasi_pembayaran() {
       success: function(response){
         if (response.status == true) {
           swalert('success','Sukses!', 'Pembayaran berhasil ditambahkan');
-          // setTimeout(function () {
-    			// 	// location.reload();
-          //   window.location.href = "/pembayaran?invoice="+response.id_pembayaran;
-    			// }, 2500);
+          setTimeout(function () {
+    				// location.reload();
+            window.location.href = "/pembayaran?invoice="+response.id_pembayaran;
+    			}, 2500);
         } else {
           swalert('warning','Terjadi Kesalahan!', 'Gagal tambah pembayaran.');
         }

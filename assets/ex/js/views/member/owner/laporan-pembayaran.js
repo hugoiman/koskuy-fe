@@ -45,17 +45,17 @@ function getLaporanPembayaran(token, id_kos, bulan, tahun){
       displayDataTable(response);
 
       var total_pemasukan = 0
-      $.each(response.pembayaran_list,function(prop,obj){
+      $.each(response.laporan_pembayaran,function(prop,obj){
         total_pemasukan += obj.nominal;
       });
 
       $(".total-pemasukan").text(total_pemasukan);
       $(".rupiah").mask('000.000.000', {reverse: true});
       $(".total").text("Total"); $(".dibayar").text("Dibayar"); $(".tagihan").text("Tagihan"); $(".nominal").text("Nominal");
-      // var total_renter = response.pembayaran_list.filter(function(x) { return x; }).length;
-      // var total_lunas = response.pembayaran_list.filter(function(x) { return x.status_pembayaran == "lunas"; }).length;
-      // var total_angsur = response.pembayaran_list.filter(function(x) { return x.status_pembayaran == "angsur"; }).length;
-      // var total_belum_bayar = response.pembayaran_list.filter(function(x) { return x.status_pembayaran == "belum bayar"; }).length;
+      // var total_renter = response.laporan_pembayaran.filter(function(x) { return x; }).length;
+      // var total_lunas = response.laporan_pembayaran.filter(function(x) { return x.status_pembayaran == "lunas"; }).length;
+      // var total_angsur = response.laporan_pembayaran.filter(function(x) { return x.status_pembayaran == "angsur"; }).length;
+      // var total_belum_bayar = response.laporan_pembayaran.filter(function(x) { return x.status_pembayaran == "belum bayar"; }).length;
 
       // $('#total-renter').text(total_renter);
       // $('#total-lunas').text(total_lunas);
@@ -82,7 +82,7 @@ function getLaporanPembayaran(token, id_kos, bulan, tahun){
   //     console.log(data);
   //     $("#table-1").find('tbody').empty(); //add this line
   //
-  //     $.each(data.pembayaran_list, function(idx, value) {
+  //     $.each(data.laporan_pembayaran, function(idx, value) {
   //       var data = '<tr>'+
   //         '<td>'+(idx+1)+'</td>'+
   //         '<td>'+
@@ -120,10 +120,10 @@ function getLaporanPembayaran(token, id_kos, bulan, tahun){
 function displayDataTable(dataJson){
   // ajax: {
   //   url: "http://localhost:3000/getLaporanPembayaran/"+slug,
-  //   dataSrc: 'pembayaran_list'
+  //   dataSrc: 'laporan_pembayaran'
   // },
   $("#table-1").dataTable({
-    data: dataJson.pembayaran_list,
+    data: dataJson.laporan_pembayaran,
     columns: [
       // { "data": null,"sortable": false,
       //   render: function (data, type, row, meta) {

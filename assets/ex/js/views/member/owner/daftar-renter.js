@@ -77,8 +77,8 @@ function displayDataTable(dataJson) {
       },
       { data: "status_pembayaran",
         render: function (dataField) {
-          return (dataField == "lunas" ? '<center><div class="badge badge-success">Lunas</div></center>'
-          : dataField == "angsur" ? '<center><div class="badge badge-warning">Angsur</div></center>'
+          return (dataField == "Lunas" ? '<center><div class="badge badge-success">Lunas</div></center>'
+          : dataField == "Angsur" ? '<center><div class="badge badge-warning">Angsur</div></center>'
           : '<center><div class="badge badge-danger">Belum Bayar</div></center>');
         }
       },

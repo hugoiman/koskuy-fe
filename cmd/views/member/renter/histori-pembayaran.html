@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   {{template "_head" .}}
 
@@ -7,9 +8,10 @@
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" />
 
 </head>
+
 <body class="layout-3">
   <div id="app">
     <div class="main-wrapper container">
@@ -32,6 +34,7 @@
                         <thead>
                           <tr>
                             <th>Kos</th>
+                            <th>Invoice</th>
                             <th>Jangka Waktu</th>
                             <th class="total">Total Pembayaran</th>
                             <th class="dibayar">Telah Dibayar</th>
@@ -41,6 +44,7 @@
                           </tr>
                         </thead>
                         <tbody>
+
                         </tbody>
                       </table>
                     </div>
@@ -48,25 +52,27 @@
                 </div>
               </div>
             </div>
-          </section>
-        </div>
-
-        {{template "_footer" .}}
-
-        <!-- External -->
-        <!-- JS Libraies -->
-        <script src="/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
-        <script src="/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-
-        <!-- Page Specific JS File -->
-        <script src="/static/ex/js/views/member/renter/histori-pembayaran.js"></script>
-        <!-- <script src="/static/ex/js/views/member/owner/getMyKos.js"></script> -->
-        <script src="/static/ex/js/igorescobar-jQuery-Mask-Plugin-535b4e4/jquery.mask.js"></script>
-
+          </div>
+        </section>
       </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <!-- JS Libraies -->
+      <script src="/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
+      <script src="/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+      <script src="/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script> -->
+
+      <!-- Page Specific JS File -->
+      <script src="/static/ex/js/views/member/renter/histori-pembayaran.js"></script>
+      <!-- <script src="/static/ex/js/views/member/owner/getMyKos.js"></script> -->
+      <script src="/static/ex/js/igorescobar-jQuery-Mask-Plugin-535b4e4/jquery.mask.js"></script>
+
     </div>
   </div>
+  </div>
 </body>
+
 </html>

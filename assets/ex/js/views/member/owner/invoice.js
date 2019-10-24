@@ -26,8 +26,8 @@ function getDetailPembayaran(token, id_pembayaran) {
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
-      console.log(response);
       // $("#avatar_pembayaran").attr("src", response.foto);
+      $("#invoice-number").text(response.id_pembayaran);
       $("#nama").text(response.nama);
       $("#nama_kos").text(response.nama_kos);
       $("#kamar").text(response.kamar);
@@ -64,22 +64,12 @@ function getDetailPembayaran(token, id_pembayaran) {
 
       $("#avatar_pembayaran").attr("src", "https://res.cloudinary.com/dbddhr9rz/image/upload/w_400,h_400,c_crop,g_face,r_max/w_180/"+foto);
 
-      // var status_pembayaran;
-      if (response.status_pembayaran == "lunas") {
-        var status_pembayaran = '<div class="badge badge-success">Lunas</div>';
-      } else if (response.status_pembayaran == "angsur") {
-        var status_pembayaran = '<div class="badge badge-warning">Angsur</div>';
-      } else {
-        var status_pembayaran = '<div class="badge badge-danger">Belum Bayar</div>';
-      }
-      $(".ticket-info").append(status_pembayaran);
-
       $.each(response.tanggal_pembayaran_list, function(idx, value) {
         var data = '<tr>'+
           '<td>'+(idx+1)+'</td>'+
           '<td>'+value.tanggal_pembayaran+'</td>'+
           '<td class="text-right"><b class="rupiah">'+value.nominal+'</b></td>'+
-          '<td><butoon class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="edit"><i class="far fa-edit"></i></button></td>'+
+          '<td><button class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="edit"><i class="far fa-edit"></i></button></td>'+
         '</tr>';
         $("#tb_tgl_pembayaran").append(data);
       });

@@ -24,6 +24,7 @@ function getInvoice(token, id_pembayaran) {
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
       // $("#avatar_pembayaran").attr("src", response.foto);
+      $("#invoice-number").text(response.id_pembayaran);
       $("#nama").text(response.nama);
       $("#nama_kos").text(response.nama_kos);
       $("#kamar").text(response.kamar);
@@ -37,6 +38,20 @@ function getInvoice(token, id_pembayaran) {
       $("#tagihan").text(response.tagihan);
       $("#harga_sewa").text(response.harga_sewa);
 
+      if (response.denda != 0) {
+        $("#tr_denda").attr("hidden", false)
+        $("#denda").text(response.denda);
+      }
+
+      if (response.status_pembayaran == "Lunas") {
+        var data = '<span class="badge badge-success">Lunas</span>';
+      } else if (response.status_pembayaran == "Angsur") {
+        var data = '<span class="badge badge-warning">Angsur</span>';
+      } else {
+        var data = '<span class="badge badge-danger">Belum Bayar</span>';
+      }
+      $("#status").append(data);
+
       var strfoto = response.foto.split("/");
       str4 = strfoto[strfoto.length-1];
       str3 = strfoto[strfoto.length-2];
@@ -45,16 +60,6 @@ function getInvoice(token, id_pembayaran) {
       var foto = str1+"/"+str2+"/"+str3+"/"+str4;
 
       $("#avatar_pembayaran").attr("src", "https://res.cloudinary.com/dbddhr9rz/image/upload/w_400,h_400,c_crop,g_face,r_max/w_180/"+foto);
-
-      // var status_pembayaran;
-      if (response.status_pembayaran == "lunas") {
-        var status_pembayaran = '<div class="badge badge-success">Lunas</div>';
-      } else if (response.status_pembayaran == "angsur") {
-        var status_pembayaran = '<div class="badge badge-warning">Angsur</div>';
-      } else {
-        var status_pembayaran = '<div class="badge badge-danger">Belum Bayar</div>';
-      }
-      $(".ticket-info").append(status_pembayaran);
 
       $.each(response.tanggal_pembayaran_list, function(idx, value) {
         var data = '<tr>'+

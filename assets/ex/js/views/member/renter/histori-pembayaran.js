@@ -58,7 +58,7 @@ function displayDataTable(dataJson){
         }
       },
       { data: function (data, type, dataToSet) {
-          return '<a href="/pembayaran?invoice=' +data.id_pembayaran+ '" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="lihat"><i class="far fa-eye"></i></a>';
+          return '<a href="/invoice-pembayaran?invoice=' +data.id_pembayaran+ '" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="lihat"><i class="far fa-eye"></i></a>';
           // ' <button type="submit" class="btn btn-sm btn-danger btn-hapus_pembayaran" data-toggle="tooltip" data-placement="top" title="hapus"><i class="far fa-trash-alt"></i></button>';
         }
       }

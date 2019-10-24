@@ -17,7 +17,7 @@ function getComponentUI(){
   $(".daftar-renter").addClass("active");
   $("#page_name").text("Daftar Anak Kos");
   $("#title").text("Daftar Anak Kos");
-  var button = '<button id="add_member" class="btn btn-primary"><i class="fa fa-user-plus"></i> Anak Kos</a> ';
+  var button = '<button id="add_member" class="btn btn-primary"><i class="fa fa-user-plus"></i> Anak Kos</button> ';
   $(".section-header-button").append(button);
 }
 

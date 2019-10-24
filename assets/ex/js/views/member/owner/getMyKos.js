@@ -5,12 +5,20 @@ function getMyKos(slug, id_member, token){
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
       if (response.id_kos != 0) {
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"
+                          ];
+        var date = new Date();
+        var bulan = monthNames[date.getMonth()];
+        var tahun = date.getFullYear();
+
         $(".section").removeAttr('hidden');
         // $("#title").text(response.nama_kos);
         $(".nama_kos").text(response.nama_kos);
+        $("#id_kos").val(response.id_kos);
         $(".link_dashboard").attr("href", "/dashboard?kos="+response.slug);
-        $(".link_laporan-pembayaran").attr("href", "/laporan-pembayaran?kos="+response.slug+"&bulan=September&tahun=2019");
-        $(".link_laporan-bulanan").attr("href", "/laporan-bulanan?kos="+response.slug+"&bulan=September&tahun=2019");
+        $(".link_laporan-pembayaran").attr("href", "/laporan-pembayaran?kos="+response.slug+"&bulan="+bulan+"&tahun="+tahun);
+        $(".link_laporan-bulanan").attr("href", "/laporan-bulanan?kos="+response.slug+"&tahun="+tahun);
         $(".link_daftar-renter").attr("href", "/daftar-anak-kos?kos="+response.slug);
         $(".link_pengaturan").attr("href", "/pengaturan?kos="+response.slug);
 

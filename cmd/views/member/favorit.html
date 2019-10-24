@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {{template "_head" .}}
+
+</head>
+
+<body class="layout-3">
+  <div id="app">
+    <div class="main-wrapper container">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+
+      <div class="main-content">
+        <section class="section">
+
+          {{template "_section-header" .}}
+
+          <div class="section-body">
+
+            <div class="card" id="empty" hidden>
+              <div class="card-body">
+                <div class="empty-state" data-height="600">
+                  <img class="img-fluid" src="/static/img/drawkit/drawkit-nature-man-colour.svg" alt="image">
+                  <h2 class="mt-0">Kamu belum memiliki kos favorit yang disimpan.</h2>
+                  <p class="lead">
+                    Yuk! Cari kos favoritmu sekarang di <a href="/">koskuy.com</a>
+                  </p>
+                  <a href="#" class="btn btn-primary mt-4">Cari sekarang</a>
+                  <!-- <a href="#" class="mt-4 bb">Need Help?</a> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="row" id="favorit_list" hidden>
+              <!-- display daftar kos owner -->
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <script src="/static/ex/js/views/member/favorit.js"></script>
+
+    </div>
+  </div>
+</body>
+
+</html>

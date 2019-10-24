@@ -8,35 +8,37 @@ window.onload = function () {
 }
 
 function getBulanStringToNumber(mon){
-    var d = Date.parse(mon + "1, 2012");
-    if(!isNaN(d)){
-      return new Date(d).getMonth() + 1;
-    }
+  var d = Date.parse(mon + "1, 2012");
+  if(!isNaN(d)){
+    return new Date(d).getMonth() + 1;
+  }
+
   return -1;
- }
+}
 
 const getData = async (token, slug, bulan, tahun, strbulan) => {
-  const getCUI        = await getComponentUI(strbulan, tahun);
+  const getCUI        = await getComponentUI(strbulan, tahun, slug);
   const jsonToken     = await authToken(token);
   const getDataMember = await getMember(jsonToken.Id_user, token);
   const getDataMyKos  = await getMyKos(slug, jsonToken.Id_user, token); // wajib
-  const getLaporan    = await getLaporanPembayaran(token, getDataMyKos.id_kos, bulan, tahun);
   const getTotalStatus  = await getStatusPembayaran(token, getDataMyKos.id_kos);
+  const getLaporan    = await getLaporanPembayaran(token, getDataMyKos.id_kos, bulan, tahun);
 }
 
-function getComponentUI(strbulan, tahun){
+function getComponentUI(strbulan, tahun, slug){
   $(".laporan").addClass("active");
   $(".laporan-pembayaran").addClass("active");
   $("#page_name").text("Laporan Pembayaran");
   $("#title").text("Laporan Pembayaran");
-  var button = '<button id="add_pembayaran" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Data Pembayaran</button> ';
-  $(".section-header-button").append(button);
   $("#date").val(strbulan+" "+tahun);
+  var button = '<a href="/pembayaran-baru?kos='+slug+'" class="btn btn-primary" id="add_pembayaran"><i class="fa fa-plus"></i> Pembayaran Baru</a> ';
+  $(".section-header-button").append(button);
+  // $("#add_pembayaran").attr("href", "/pembayaran-baru?kos="+slug);
 }
 
-function getLaporanPembayaran(token, slug, bulan, tahun){
+function getLaporanPembayaran(token, id_kos, bulan, tahun){
   $.ajax({
-    url   : domain+"/laporan-pembayaran/"+slug+"?bulan="+bulan+"&tahun="+tahun,
+    url   : domain+"/laporan-pembayaran/"+id_kos+"?bulan="+bulan+"&tahun="+tahun,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){

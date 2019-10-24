@@ -32,7 +32,12 @@ function getMember(id_member, token) {
       $('#nama').val(response.nama);
       $('#email').val(response.email);
       $('#no_hp').val(response.no_hp);
-      $('#tanggal_lahir').val(response.tanggal_lahir);
+      if (response.tanggal_lahir != "01 Jan 0001") {
+        $('#tanggal_lahir').val(response.tanggal_lahir);
+      } else {
+        $('#tanggal_lahir').val("");
+      }
+      // $('#tanggal_lahir').val(response.tanggal_lahir);
       $('#alamat').val(response.alamat);
       $('#jenis_kelamin').val(response.jenis_kelamin);
       $('#pekerjaan').val(response.pekerjaan);

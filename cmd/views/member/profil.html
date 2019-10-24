@@ -335,13 +335,14 @@
           });
 
           $("#btnSimpanPassword").click(function(){
+            checkPasswordLama();
+            checkPasswordBaru();
+            checkKonfirmasiPassword();
             var password_lama = $("#password_lama").val();
-            if ($("#form_password_lama").is(":visible") == false && password_lama == "" && $(".password").hasClass("is-invalid") == false) {
+            if ($(".is-invalid").is(":visible")) {
+
+            } else {
               changePassword();
-            } else if ($("#form_password_lama").is(":visible") == true && password_lama != "" && $(".password").hasClass("is-invalid") == false) {
-              changePassword();
-            }else {
-              swalert('warning','Terjadi Kesalahan', 'Silahkan periksa kembali data diri anda.');
             }
           });
 
@@ -360,6 +361,7 @@
             checkNo_hp();
             checkAlamat();
             checkPekerjaan();
+            checkTanggalLahir();
             if ($(".is-invalid").is(":visible")) {
               // swalert('warning','Terjadi Kesalahan', 'Silahkan periksa kembali data diri anda.');
             } else {

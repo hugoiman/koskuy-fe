@@ -25,6 +25,7 @@ function getProfilMember(id_member, token){
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
+      console.log(response);
       // $(".id_member").val(response.id_member);
       $(".username").val(response.username);
       $(".nama").val(response.nama);
@@ -32,7 +33,7 @@ function getProfilMember(id_member, token){
       $('.no_hp').val(response.no_hp);
       if (response.tanggal_lahir != "01 Jan 0001") {
         $('.tanggal_lahir').val(response.tanggal_lahir);
-      } else if (response.tanggal_lahir == "01 Jan 0001") {
+      } else {
         $('.tanggal_lahir').val("");
       }
       $('.jenis_kelamin').val(response.jenis_kelamin);
@@ -114,7 +115,7 @@ function checkKonfirmasiPassword(){
   } else {
     $("#konfirmasi_password").addClass("is-invalid");
     $("#konfirmasi_password").removeClass("is-valid");
-    $("#invalid_konfirmasi_password").show().text("Konfirmasi password tidak sesuai dengan password");
+    $("#invalid_konfirmasi_password").show().text("Konfirmasi password tidak sesuai");
   }
 }
 
@@ -189,7 +190,7 @@ function checkGender(){
   } else {
     $(".gender").addClass("is-invalid");
     $(".gender").removeClass("is-valid");
-    $("#invalid_gender").show().text("Jenis kelamin wajib diisi.");
+    $("#invalid_gender").show().text("Wajib memilih salah satu.");
   }
 }
 
@@ -218,6 +219,20 @@ function checkAlamat(){
     $(".alamat").addClass("is-invalid");
     $(".alamat").removeClass("is-valid");
     $("#invalid_alamat").show().text("Alamat wajib diisi.");
+  }
+}
+
+function checkTanggalLahir() {
+  var tanggal_lahir = $('#input_tanggal_lahir').val();
+
+  if (tanggal_lahir.length > 0) {
+    $(".tanggal_lahir").addClass("is-valid");
+    $(".tanggal_lahir").removeClass("is-invalid");
+    $("#invalid_tanggal_lahir").hide();
+  } else {
+    $(".tanggal_lahir").addClass("is-invalid");
+    $(".tanggal_lahir").removeClass("is-valid");
+    $("#invalid_tanggal_lahir").show().text("Tanggal lahir wajib diisi.");
   }
 }
 

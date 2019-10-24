@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{template "_head" .}}
+
+  <!-- External -->
+  <!-- CSS Libraries -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/node_modules/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="/node_modules/bootstrap-daterangepicker/daterangepicker.css">
+
+</head>
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+      {{template "_side-bar" .}}
+
+      <div class="main-content">
+        <section class="section">
+
+          {{template "_section-header" .}}
+
+          <div class="section-body">
+            <div class="row">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-lg-8 offset-lg-2">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label>Nama Anak Kos</label>
+                      <select class="form-control select2" id="nama_anak_kos">
+                        <option value=""></option>
+                      </select>
+                      <div class="invalid-feedback" id="invalid_nama_anak_kos"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Kamar</label>
+                      <input type="text" class="form-control" id="kamar">
+                      <div class="invalid-feedback" id="invalid_kamar"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Mulai Masuk</label>
+                      <input type="text" class="form-control datepicker" id="tgl_masuk">
+                      <div class="invalid-feedback" id="invalid_tgl_masuk"></div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-3">
+                        <label>Durasi</label>
+                        <input type="number" class="form-control" id="durasi1" min="1" max="31">
+                        <div class="invalid-feedback" id="invalid_durasi1"></div>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label>.</label>
+                        <select id="tipe_pembayaran" class="form-control">
+                          <!-- <option selected value="30,Bulan,500000">Bulan</option>
+                          <option value="7,Minggu,200000">Minggu</option>
+                          <option value="1,Minggu,35000">Hari</option>
+                          <option value="365,Tahun,5000000">Tahun</option> -->
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Batas Akhir Sewa <small id="nhari"></small> </label>
+                        <input type="text" class="form-control" id="tgl_akhir" disabled>
+                        <div class="invalid-feedback" id="invalid_tgl_akhir"></div>
+                      </div>
+                      <div class="invalid-feedback" id="invalid_tgl_akhir"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Harga Sewa Kamar <small id="label_harga_sewa"></small> </label>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Rp</span>
+                        </div>
+                        <input type="text" class="form-control rupiah" id="harga_sewa">
+
+                        <div class="invalid-feedback" id="invalid_harga_sewa"></div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="control-label">Kos mempunyai tanggal penagihan tetap?
+                        <label class="custom-switch">
+                          <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" id="cb_penagihan">
+                          <span class="custom-switch-indicator"></span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="form-group" id="form_penagihan">
+                      <label>Tanggal Penagihan <small>(Penagihan setiap tanggal)</small></label>
+                      <input type="number" class="form-control" id="tgl_penagihan" min="1" max="31">
+                      <div class="invalid-feedback" id="invalid_tgl_penagihan"></div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-5">
+                        <label>Telah dibayar</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Rp</span>
+                          </div>
+                          <input type="text" class="form-control rupiah" id="dibayar" placeholder="0">
+                          <div class="invalid-feedback" id="invalid_dibayar"></div>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-7" id="form_tgl_pembayaran">
+                        <label>Tanggal Pembayaran</label>
+                        <input type="text" class="form-control datepicker" id="tgl_pembayaran">
+                        <div class="invalid-feedback" id="invalid_tgl_pembayaran"></div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Biaya Denda</label>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Rp</span>
+                        </div>
+                        <input type="text" class="form-control rupiah" id="denda" placeholder="0">
+
+                        <div class="invalid-feedback" id="invalid_denda"></div>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-12">
+                        <label>Denda dibebankan apabila melewati <b><span id="nharidenda">x</span></b> hari dari tanggal masuk <small>(Tanggal jatuh tempo)</small> </label>
+                      </div>
+                      <div class="form-group col-md-2 mt-md-n4">
+                        <input type="number" class="form-control" id="hari_denda" min="0">
+                        <div class="invalid-feedback" id="invalid_hari_denda"></div>
+                      </div>
+                      <div class="form-group col-md-3 mt-md-n4">
+                        <select id="waktu_denda" class="form-control">
+                          <option selected value="1">Hari</option>
+                          <option value="7">Minggu</option>
+                          <option value="30">Bulan</option>
+                          <option value="365">Tahun</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-1 mt-md-n3">
+                        <center><i class="fas fa-equals"></i></center>
+                      </div>
+                      <div class="form-group col-md-6 mt-md-n4">
+                        <input type="text" class="form-control" id="jatuh_tempo" disabled>
+                        <div class="invalid-feedback" id="invalid_jatuh_tempo"></div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                      <label>Jatuh Tempo <small> - Tanggal denda diberlakukan (jika ada)</small></label>
+                      <input type="text" class="form-control datepicker" id="jatuh_tempo">
+                      <div class="invalid-feedback" id="invalid_jatuh_tempo"></div>
+                    </div> -->
+
+                    <!-- <div class="form-group">
+                      <button class="btn btn-primary" id="biaya_lain"><i class="fa fa-plus"></i> Tambahkan Biaya Lain</button> <small>(Optional)</small>
+                    </div> -->
+
+                    <!-- <div class="form-row" id="form_biaya">
+                      <div class="form-group col-md-6">
+                        <label>Biaya Lain</label>
+                        <input type="text" class="form-control" id="biaya1">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Nominal</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">Rp</span>
+                          </div>
+                          <input type="text" class="form-control rupiah" id="denda">
+
+                          <div class="invalid-feedback" id="invalid_denda"></div>
+                          <button class="btn btn-sm btn-default mx-2" data-toggle="tooltip" data-placement="top" title="hapus"><i class="far fa-trash-alt fa-3x"></i></button>
+                        </div>
+                      </div>
+                    </div> -->
+
+                    <div class="card-footer text-right">
+                      <input type="button" class="btn btn-primary" id="validasi_pembayaran" value="Simpan">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <!-- JS Libraies -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+      <!-- Page Specific JS File -->
+      <script src="/static/ex/js/views/member/owner/pembayaran-baru.js"></script>
+      <script src="/static/ex/js/views/member/owner/getMyKos.js"></script>
+      <script src="/static/ex/js/igorescobar-jQuery-Mask-Plugin-535b4e4/jquery.mask.js"></script>
+      <script src="/node_modules/select2/dist/js/select2.full.min.js"></script>
+      <script src="/node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+      </script>
+      <script>
+        $(document).ready(function(){
+          $(".rupiah").mask('000.000.000', {reverse: true});
+          $('.select2').select2();
+          $("#form_penagihan").hide();
+          $("#form_tgl_pembayaran").hide();
+
+
+          $("#validasi_pembayaran").click(function(){
+            validasi_pembayaran();
+          });
+
+          $("#cb_penagihan").click(function(){
+            if ($(this).is(':checked')) {
+              $("#form_penagihan").show();
+            } else {
+              $("#tgl_penagihan").removeClass("is-invalid");
+              $("#tgl_penagihan").val("");
+              $("#invalid_tgl_penagihan").hide();
+              $("#form_penagihan").hide();
+            }
+          });
+
+          $("#dibayar").keyup(function(){
+            if ($("#dibayar").val() == "" || $("#dibayar").val() == 0 ) {
+              $("#form_tgl_pembayaran").hide();
+            } else {
+              $("#form_tgl_pembayaran").show();
+            }
+          });
+
+          $("#durasi1").keyup(function(){
+            var tgl_masuk      = $("#tgl_masuk").val();
+            var durasi         = $("#durasi1").val();
+            var tipe_pembayaran= $("#tipe_pembayaran").val().split(",");
+            var nhari = tipe_pembayaran[0];
+            var harga = tipe_pembayaran[2];
+            checkBatasAkhir(tgl_masuk, durasi, nhari, harga);
+          });
+
+          $("#tipe_pembayaran").change(function () {
+            var tgl_masuk      = $("#tgl_masuk").val();
+            var durasi         = $("#durasi1").val();
+            var tipe_pembayaran= $("#tipe_pembayaran").val().split(",");
+            var nhari = tipe_pembayaran[0];
+            var harga = tipe_pembayaran[2];
+            checkBatasAkhir(tgl_masuk, durasi, nhari, harga);
+          });
+
+          $("#hari_denda").keyup(function(){
+            var tgl_masuk      = $("#tgl_masuk").val();
+            var hari_denda     = $("#hari_denda").val();
+            var waktu_denda    = $("#waktu_denda").val();
+            JatuhTempo(tgl_masuk, hari_denda, waktu_denda);
+          });
+
+          $("#waktu_denda").change(function () {
+            var tgl_masuk      = $("#tgl_masuk").val();
+            var hari_denda     = $("#hari_denda").val();
+            var waktu_denda    = $("#waktu_denda").val();
+            JatuhTempo(tgl_masuk, hari_denda, waktu_denda);
+          });
+
+        });
+      </script>
+    </div>
+  </div>
+</body>
+</html>

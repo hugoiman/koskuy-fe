@@ -11,6 +11,7 @@ const getData = async (token, slug) => {
   const getDataMember = await getMember(jsonToken.Id_user, token);
   const getRenter     = await getProfilRenter(slug, token);
   const getDataMyKos  = await getMyKos(getRenter.id_kos, jsonToken.Id_user, token); // wajib
+  const getHistori    = await getHistoriPembayaran(token, getRenter.id_renter);
 }
 
 function getComponentUI(){
@@ -37,6 +38,7 @@ function getProfilRenter(slug, token){
         $('.tanggal_lahir').val("");
       }
       $('.jenis_kelamin').val(response.jenis_kelamin);
+      $('.pekerjaan').val(response.pekerjaan);
       $('.alamat').val(response.alamat);
       $('.foto').val(response.foto);
 
@@ -148,4 +150,48 @@ function btnSimpanBiodata(){
       console.log("error");
     }
   })
+}
+
+function getHistoriPembayaran(token, id_renter){
+  $.ajax({
+    url   : domain+"/history-pembayaran/"+id_renter,
+    type  : 'GET',
+    headers: {"Authorization": "Bearer "+token},
+    success: function(response){
+      displayDataTable(response);
+
+      $(".rupiah").mask('000.000.000', {reverse: true});
+      $(".total").text("Total");$(".tagihan").text("Tagihan");$(".dibayar").text("Telah Dibayar");
+    }, error:function(error){
+      console.log("error");
+    }
+  })
+}
+
+function displayDataTable(dataJson){
+  $("#table-1").dataTable({
+    data: dataJson.pembayaran_list,
+    columns: [
+      { data:
+        function (data, type, dataToSet) {
+            return '<td>'+data.tanggal_masuk+' - '+data.tanggal_akhir+'</td>';
+          }
+      },
+      { data: "total_pembayaran", className: "rupiah"},
+      { data: "total_dibayar", className: "rupiah"},
+      { data: "tagihan", className: "rupiah"},
+      { data: "status_pembayaran",
+        render: function (dataField) {
+          return (dataField == "lunas" ? '<center><div class="badge badge-success">Lunas</div></center>'
+          : dataField == "angsur" ? '<center><div class="badge badge-warning">Angsur</div></center>'
+          : '<center><div class="badge badge-danger">Belum Bayar</div></center>');
+        }
+      },
+      { data: function (data, type, dataToSet) {
+          return '<a href="/pembayaran?invoice=' +data.id_pembayaran+ '" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="lihat"><i class="far fa-eye"></i></a>';
+          // ' <button type="submit" class="btn btn-sm btn-danger btn-hapus_pembayaran" data-toggle="tooltip" data-placement="top" title="hapus"><i class="far fa-trash-alt"></i></button>';
+        }
+      }
+    ],
+  });
 }

@@ -17,8 +17,7 @@ function login(e){
       contentType: 'application/json',
       success:function(response) {
         if (response.status == false) {
-          $("#password").val("");
-          swalert('warning','Wrong!', 'Maaf username/password salah! Silahkan coba lagi.');
+          swalert('warning','Terjadi Kesalahan!', 'Maaf username/password salah! Silahkan coba lagi.');
         } else {
           //set cookie
           Cookies.set('cookie_token', response.token, { expires: 7, path: '/' });

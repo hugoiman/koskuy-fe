@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{template "_head" .}}
+
+  <!-- External -->
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/node_modules/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+
+      {{template "_header" .}}
+      {{template "_side-bar" .}}
+
+      <div class="main-content">
+        <section class="section">
+
+          {{template "_section-header" .}}
+
+          <div class="section-body">
+            <div class="row">
+              {{template "_count-status-pembayaran"}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>Tahun</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="far fa-calendar-alt"></i>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control col-md-3 col-sm-12 datepicker" id="date" data-date-format='yyyy' value="">
+                      <!-- <div class="input-group-btn"> -->
+                        <button class="btn btn-primary mx-sm-2" id="btn-search"><i class="fas fa-search"></i></button>
+                        <div class="ml-auto">
+                          <button class="btn btn-warning float-right mb-2"><span><i class="fa fa-file-pdf fa-lg"></i> PDF</span></button>
+                        </div>
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-striped" id="table-1">
+                      <thead>
+                        <tr>
+                          <th>Bulan</th>
+                          <th class="pemasukan">Pemasukan</th>
+                          <th>Pengeluaran</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {{template "_footer" .}}
+
+      <!-- External -->
+      <!-- JS Libraies -->
+      <script src="/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
+      <script src="/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+      <script src="/node_modules/datatables.net-select-bs4/js/select.bootstrap4.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+      <!-- Page Specific JS File -->
+      <!-- <script src="/static/js/page/modules-datatables.js"></script> -->
+      <script src="/static/ex/js/views/member/owner/laporan-bulanan.js"></script>
+      <script src="/static/ex/js/views/member/owner/getMyKos.js"></script>
+      <script src="/static/ex/js/igorescobar-jQuery-Mask-Plugin-535b4e4/jquery.mask.js"></script>
+
+      </script>
+      <script>
+        $(document).ready(function(){
+          $("#date").datepicker({
+            orientation: 'auto bottom',
+            autoclose: true,
+            viewMode: "years",
+            minViewMode: "years"
+          });
+
+          $("#btn-search").click(function() {
+            var slug    = getUrlParameter('kos');
+            var tahun   = $("#date").val();
+            window.location.href = "/laporan-bulanan?kos="+slug+"&tahun="+tahun;
+          });
+        });
+      </script>
+    </div>
+  </div>
+</body>
+</html>

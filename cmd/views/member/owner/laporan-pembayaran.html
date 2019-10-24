@@ -35,7 +35,7 @@
                   <h4>Laporan Bulanan</h4>
 
                   <div class="section-header-button">
-                    <button id="add_pembayaran" type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Add New</button>
+                    <button id="add_pembayaran" type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Add New</button>
                   </div>
                 </div> -->
                 <div class="card-body">
@@ -51,11 +51,19 @@
                         <input type="text" class="form-control col-md-3 col-sm-12 datepicker" id="date" data-date-format='MM yyyy' value="">
                         <!-- <div class="input-group-btn"> -->
                           <button class="btn btn-primary mx-sm-2" id="btn-search"><i class="fas fa-search"></i></button>
+                          <div class="ml-auto">
+                            <button class="btn btn-warning float-right mb-2"><span><i class="fa fa-file-pdf fa-lg"></i> PDF</span></button>
+                          </div>
+                          <!-- <div class="ml-auto">
+                            <a class="btn btn-primary" id="add_pembayaran"><i class="fa fa-plus"></i> Pembayaran Baru</a>
+                          </div> -->
                         <!-- </div> -->
                       </div>
                     </div>
                   <!-- </form> -->
-                  Total pembayaran yang masuk: Rp <div class="badge badge-primary"><h6 class="total-pemasukan rupiah"></h6></div>
+                    Total pembayaran yang masuk: Rp <div class="badge badge-primary"><span class="total-pemasukan rupiah"></span></div>
+
+
                   <!-- <div class="progress mb-3">
                     <div class="progress-bar" role="progressbar" data-width="75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
                   </div> -->
@@ -119,23 +127,6 @@
             var bulan = periode[periode.length-2];
             var tahun = periode[periode.length-1];
             window.location.href = "/laporan-pembayaran?kos="+slug+"&bulan="+bulan+"&tahun="+tahun;
-          });
-
-          $("#add_pembayaran").click(async function(){
-            const {value: text} = await Swal.fire({
-              title: 'Tambah pembayaran',
-              input: 'text',
-              inputPlaceholder: 'Masukan nomer hp member baru',
-              inputValidator: (value) => {
-                if (!value) {
-                  return 'Nomer hp diperlukan!'
-                }
-              }
-            })
-
-            if (text) {
-              Swal.fire('Nomer hp: ' + text)
-            }
           });
 
           $(".btn-hapus_pembayaran").click(function() {

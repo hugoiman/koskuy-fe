@@ -15,10 +15,12 @@ function registrasi(){
     contentType: 'application/json',
     success:function(response) {
       if (response.status == true) {
-        // login();
-        swalert('success','Sukses!', 'Anda telah terdaftar.');
+        swalert('success','Sukses!', 'Registrasi kamu berhasil!');
+        setTimeout(function (e) {
+          login();
+        }, 2500);
       } else {
-        swalert('warning','Terjadi Kesalahan!', 'Harap periksa inputan form.');
+        swalert('warning','Terjadi Kesalahan!', 'Silahkan lengkapi isi form registrasi.');
       }
     },
     error:function(error){
@@ -32,7 +34,7 @@ function login(){
   var password  = $("#password").val();
 
   $.ajax({
-    url  : "http://localhost:9000/login",
+    url  : "http://localhost:8000/login",
     type : 'POST',
     data : {'id':id,'password':password},
     success:function(response) {
@@ -46,7 +48,7 @@ function login(){
 
 function authToken(token){
   $.ajax({
-    url   : "http://localhost:9000/authToken",
+    url   : "http://localhost:8000/authToken",
     type  : 'POST',
     headers: {"Authorization": "Bearer "+token},
 

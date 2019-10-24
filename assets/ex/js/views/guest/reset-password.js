@@ -23,6 +23,8 @@ function reset_password(){
         setTimeout(function () {
   				window.location.href = "http://localhost:9000/auth";
   			}, 2500);
+      } else {
+        swalert('warning','Terjadi Kesalahan!', 'Silahkan coba lagi.');
       }
     },
     error:function(error){

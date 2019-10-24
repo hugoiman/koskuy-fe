@@ -40,10 +40,20 @@ function getDetailPembayaran(token, id_pembayaran) {
       $("#dibayar").text(response.total_dibayar);
       $("#tagihan").text(response.tagihan);
       $("#harga_sewa").text(response.harga_sewa);
+
       if (response.denda != 0) {
         $("#tr_denda").attr("hidden", false)
         $("#denda").text(response.denda);
       }
+
+      if (response.status_pembayaran == "Lunas") {
+        var data = '<span class="badge badge-success">Lunas</span>';
+      } else if (response.status_pembayaran == "Angsur") {
+        var data = '<span class="badge badge-warning">Angsur</span>';
+      } else {
+        var data = '<span class="badge badge-danger">Belum Bayar</span>';
+      }
+      $("#status").append(data);
 
       var strfoto = response.foto.split("/");
       str4 = strfoto[strfoto.length-1];

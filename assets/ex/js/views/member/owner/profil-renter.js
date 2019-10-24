@@ -11,7 +11,7 @@ const getData = async (token, slug) => {
   const getDataMember = await getMember(jsonToken.Id_user, token);
   const getRenter     = await getProfilRenter(slug, token);
   const getDataMyKos  = await getMyKos(getRenter.id_kos, jsonToken.Id_user, token); // wajib
-  const getHistori    = await getHistoriPembayaran(token, getRenter.id_renter);
+  const getHistori    = await getHistoriPembayaran(token, getRenter.id_renter, getRenter.id_kos);
 }
 
 function getComponentUI(){
@@ -41,6 +41,15 @@ function getProfilRenter(slug, token){
       $('.pekerjaan').val(response.pekerjaan);
       $('.alamat').val(response.alamat);
       $('.foto').val(response.foto);
+
+      var status = response.status_renter;
+      if (status == "aktif") {
+        var data = '<div class="badge badge-lg badge-success">Aktif</div> - <b>Kamar: '+response.kamar+'</b></center>';
+      } else {
+        var data = '<div class="badge badge-lg badge-danger">Tidak Aktif</div> - <b>Kamar: '+response.kamar+'</b></center>';
+      }
+      $("#state").append(data);
+
 
       var strfoto = response.foto.split("/");
       str4 = strfoto[strfoto.length-1];
@@ -152,16 +161,16 @@ function btnSimpanBiodata(){
   })
 }
 
-function getHistoriPembayaran(token, id_renter){
+function getHistoriPembayaran(token, id_renter, id_kos){
   $.ajax({
-    url   : domain+"/history-pembayaran/"+id_renter,
+    url   : domain+"/history-pembayaran/"+id_renter+"/"+id_kos,
     type  : 'GET',
     headers: {"Authorization": "Bearer "+token},
     success: function(response){
       displayDataTable(response);
 
       $(".rupiah").mask('000.000.000', {reverse: true});
-      $(".total").text("Total");$(".tagihan").text("Tagihan");$(".dibayar").text("Telah Dibayar");
+      $(".total").text("Total Pembayaran");$(".tagihan").text("Tagihan");$(".dibayar").text("Telah Dibayar");
     }, error:function(error){
       console.log("error");
     }
@@ -170,8 +179,13 @@ function getHistoriPembayaran(token, id_renter){
 
 function displayDataTable(dataJson){
   $("#table-1").dataTable({
-    data: dataJson.pembayaran_list,
+    data: dataJson.history_pembayaran,
     columns: [
+      { data:
+        function (data, type, dataToSet) {
+            return '<td>#'+data.id_pembayaran+'</td>';
+          }
+      },
       { data:
         function (data, type, dataToSet) {
             return '<td>'+data.tanggal_masuk+' - '+data.tanggal_akhir+'</td>';
